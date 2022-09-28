@@ -1,0 +1,9 @@
+vue 설치
+vue-auth
+tailwind 설치
+
+
+
+
+1.
+id  location    price   price2  img1 img2 img3 site reservationsite contents  (  instasite   youtube)
