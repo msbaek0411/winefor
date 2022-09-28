@@ -1915,9 +1915,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       House: [],
+      price: [],
       location: [],
       loginid: 1,
-      locationNum: 1
+      locationNum: 1,
+      priceNum: 1
     };
   },
   methods: {
@@ -1928,13 +1930,21 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/House/".concat(this.locationNum)).then(function (res) {
         _this.House = res.data;
       });
+    },
+    Pricebtn: function Pricebtn(i) {
+      var _this2 = this;
+
+      this.priceNum = i;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/price/".concat(this.priceNum)).then(function (res) {
+        _this2.price = res.data;
+      });
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/location').then(function (res) {
-      _this2.location = res.data;
+      _this3.location = res.data;
     });
   }
 });
@@ -1958,7 +1968,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      is_show: false,
+      is_show: true,
       is_showlocation: false,
       showmain: 0,
       isShowing: true,
@@ -2049,7 +2059,61 @@ var render = function render() {
         "border-radius": "10px"
       }
     }, [_vm._v(_vm._s(_vm.location.location[i].name))])])]);
-  })], 2), _vm._v(" "), _vm._m(3)])]), _vm._v(" "), _c("section", {
+  })], 2), _vm._v(" "), _c("div", {
+    staticClass: "w-full md:w-1/4 xl:w-1/4 p-6 flex flex-col"
+  }, [_vm._m(3), _vm._v(" "), _c("ul", [_c("li", {
+    staticClass: "text-center p-[4%]"
+  }, [_c("button", {
+    staticClass: "pl-[15%] pr-[15%]",
+    staticStyle: {
+      border: "solid 1px gray",
+      "border-radius": "10px"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.Pricebtn(1);
+      }
+    }
+  }, [_vm._v("20 ~ 30 만원")])]), _vm._v(" "), _c("li", {
+    staticClass: "text-center p-[4%]"
+  }, [_c("button", {
+    staticClass: "pl-[15%] pr-[15%]",
+    staticStyle: {
+      border: "solid 1px gray",
+      "border-radius": "10px"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.Pricebtn(2);
+      }
+    }
+  }, [_vm._v("30 ~ 40 만원")])]), _vm._v(" "), _c("li", {
+    staticClass: "text-center p-[4%]"
+  }, [_c("button", {
+    staticClass: "pl-[15%] pr-[15%]",
+    staticStyle: {
+      border: "solid 1px gray",
+      "border-radius": "10px"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.Pricebtn(3);
+      }
+    }
+  }, [_vm._v("40 ~ 50 만원")])]), _vm._v(" "), _c("li", {
+    staticClass: "text-center p-[4%]"
+  }, [_c("button", {
+    staticClass: "pl-[15%] pr-[15%]",
+    staticStyle: {
+      border: "solid 1px gray",
+      "border-radius": "10px"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.Pricebtn(4);
+      }
+    }
+  }, [_vm._v("50 ~ 만원")])])])])])]), _vm._v(" "), _c("section", {
     staticClass: "bg-white py-8"
   }, [_c("div", {
     staticClass: "container mx-auto flex items-center flex-wrap pt-4 pb-12"
@@ -2113,7 +2177,7 @@ var render = function render() {
         href: "http://127.0.0.1:8000/home/house/" + _vm.House.House[i].id
       }
     }, [_c("img", {
-      staticClass: "hover:grow hover:shadow-lg h-[29vh] w-[32vh]",
+      staticClass: "hover:grow hover:shadow-lg h-[29vh] w-[32vh] rounded-[27px]",
       attrs: {
         src: _vm.House.House[i].img1
       }
@@ -2132,6 +2196,34 @@ var render = function render() {
     })])]), _vm._v(" "), _c("p", {
       staticClass: "pt-1 text-gray-900"
     }, [_vm._v(_vm._s(_vm.House.House[i].price))])])]);
+  }), _vm._v(" "), _vm._l(_vm.price.price, function (test, i) {
+    return _c("div", {
+      key: i,
+      staticClass: "w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col"
+    }, [_c("a", {
+      attrs: {
+        href: "http://127.0.0.1:8000/home/house/" + _vm.price.price[i].id
+      }
+    }, [_c("img", {
+      staticClass: "hover:grow hover:shadow-lg h-[29vh] w-[32vh] rounded-[27px]",
+      attrs: {
+        src: _vm.price.price[i].img1
+      }
+    }), _vm._v(" "), _c("div", {
+      staticClass: "pt-3 flex items-center justify-between"
+    }, [_c("p", {}, [_vm._v(_vm._s(_vm.price.price[i].location))]), _vm._v(" "), _c("svg", {
+      staticClass: "h-6 w-6 fill-current text-gray-500 hover:text-black",
+      attrs: {
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 24 24"
+      }
+    }, [_c("path", {
+      attrs: {
+        d: "M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z"
+      }
+    })])]), _vm._v(" "), _c("p", {
+      staticClass: "pt-1 text-gray-900"
+    }, [_vm._v(_vm._s(_vm.price.price[i].price))])])]);
   })], 2)])]);
 };
 
@@ -2181,9 +2273,7 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", {
-    staticClass: "w-full md:w-1/4 xl:w-1/4 p-6 flex flex-col"
-  }, [_c("div", [_c("img", {
+  return _c("div", [_c("img", {
     staticClass: "p-[10%] w-[40%] mr-auto ml-auto",
     staticStyle: {
       "border-bottom": "solid darkgray"
@@ -2192,39 +2282,7 @@ var staticRenderFns = [function () {
       src: __webpack_require__(/*! ../../img/price.png */ "./resources/img/price.png"),
       alt: "price"
     }
-  })]), _vm._v(" "), _c("ul", [_c("li", {
-    staticClass: "text-center p-[4%]"
-  }, [_c("button", {
-    staticClass: "pl-[15%] pr-[15%]",
-    staticStyle: {
-      border: "solid 1px gray",
-      "border-radius": "10px"
-    }
-  }, [_vm._v("5 ~ 10 만원")])]), _vm._v(" "), _c("li", {
-    staticClass: "text-center p-[4%]"
-  }, [_c("button", {
-    staticClass: "pl-[15%] pr-[15%]",
-    staticStyle: {
-      border: "solid 1px gray",
-      "border-radius": "10px"
-    }
-  }, [_vm._v("10 ~ 15 만원")])]), _vm._v(" "), _c("li", {
-    staticClass: "text-center p-[4%]"
-  }, [_c("button", {
-    staticClass: "pl-[15%] pr-[15%]",
-    staticStyle: {
-      border: "solid 1px gray",
-      "border-radius": "10px"
-    }
-  }, [_vm._v("15 ~ 20 만원")])]), _vm._v(" "), _c("li", {
-    staticClass: "text-center p-[4%]"
-  }, [_c("button", {
-    staticClass: "pl-[15%] pr-[15%]",
-    staticStyle: {
-      border: "solid 1px gray",
-      "border-radius": "10px"
-    }
-  }, [_vm._v("20 ~ 만원")])])])]);
+  })]);
 }];
 render._withStripped = true;
 
@@ -2349,7 +2407,7 @@ var render = function render() {
     staticStyle: {
       color: "gray"
     }
-  }, [_vm._v("\n\t\t\t\t\t\t\t\t※실제 사이트로 이동합니다.\n\t\t\t\t\t\t\t")])])]), _vm._v(" "), _c("li", [_c("div", [_vm._v("최저가 가격 : " + _vm._s(_vm.idlogin.price))]), _vm._v(" "), _c("div", [_vm._v("최고가 가격 : " + _vm._s(_vm.idlogin.price2))])]), _vm._v(" "), _vm._m(8), _vm._v(" "), _vm._m(9)]), _vm._v(" "), _vm._m(10)])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n\t\t\t\t\t\t\t\t※실제 사이트로 이동합니다.\n\t\t\t\t\t\t\t")])])]), _vm._v(" "), _c("li", [_c("div", [_vm._v("최저가 가격 : " + _vm._s(_vm.idlogin.price))]), _vm._v(" "), _c("div", [_vm._v("최고가 가격 : " + _vm._s(_vm.idlogin.price2))])]), _vm._v(" "), _vm._m(8), _vm._v(" "), _vm._m(9)])])]), _vm._v(" "), _c("div", {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -2383,21 +2441,29 @@ var render = function render() {
     }],
     staticClass: "modalcss"
   }, [_c("div", {
+    staticClass: "ml-auto mr-auto w-full"
+  }, [_c("img", {
+    staticClass: "w-[1.5%] float-right",
     staticStyle: {
-      width: "500px",
-      height: "400px"
+      cursor: "pointer"
     },
     attrs: {
-      id: "map"
-    }
-  }), _vm._v(" "), _c("button", {
-    staticClass: "ml-auto mr-auto w-full",
+      src: __webpack_require__(/*! ../../img/cancel.png */ "./resources/img/cancel.png"),
+      alt: "취소"
+    },
     on: {
       click: function click($event) {
         return _vm.handlelocation_modal();
       }
     }
-  }, [_vm._v("취소")])]), _vm._v(" "), _c("div")]);
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "text-[13px] pb-[18px] pt-[28px]"
+  }, [_vm._v(_vm._s(_vm.idlogin.location2))]), _vm._v(" "), _c("iframe", {
+    staticClass: "w-full h-[94%]",
+    attrs: {
+      src: "http://127.0.0.1:8000/home/kakao/" + _vm.idlogin.id
+    }
+  })]), _vm._v(" "), _c("div")]);
 };
 
 var staticRenderFns = [function () {
@@ -2544,16 +2610,6 @@ var staticRenderFns = [function () {
   return _c("li", [_c("div", {
     staticClass: "ml-auto mr-auto w-[17%]"
   }, [_c("button", [_vm._v("예약하기")]), _vm._v(" "), _c("button", [_vm._v("취소")])])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", [_c("iframe", {
-    staticClass: "w-[54vh] h-[44vh]",
-    attrs: {
-      src: "http://127.0.0.1:8000/kakao"
-    }
-  })]);
 }];
 render._withStripped = true;
 
@@ -50756,6 +50812,17 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+
+/***/ "./resources/img/cancel.png":
+/*!**********************************!*\
+  !*** ./resources/img/cancel.png ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/cancel.png?b383d8a4d94358fdc5888b0c60a55241";
 
 /***/ }),
 

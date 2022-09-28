@@ -22,7 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/house/{id}', 'HouseController@show');
 
-Route::get('/kakao', function () {
-    return view('kakao');
-});
+Route::get('/home/kakao/{id}', 'HouseController@kakaoshow');
 

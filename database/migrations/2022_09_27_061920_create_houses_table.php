@@ -26,6 +26,8 @@ class CreateHousesTable extends Migration
             $table->string('ressite');
             $table->string('contents');
             $table->string('location2');
+            $table->string('locationX');
+            $table->string('locationY');
             $table->timestamps();
 
         });

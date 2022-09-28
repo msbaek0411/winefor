@@ -30,6 +30,29 @@ class HouseController extends Controller
             'House' => $House
         ],200);
     }
+    
+    public function priceindex($i)
+    {
+        $price = House::where('locaid', $i)->get();
+
+        if ( $i == 1) {
+            // $House = House::where('price','>',300000)->get();
+            $price = House::where('price','>',200000)->where('price','<',300000)->get();
+        }else if ( $i == 2) {
+            $price = House::where('price','>',300000)->where('price','<',400000)->get();
+        }else if ( $i == 3) {
+            $price = House::where('price','>',400000)->where('price','<',500000)->get();
+        }else if ( $i == 4) {
+            $price = House::where('price','>',500000)->get();
+        }
+
+        return response()->json([
+            'price' => $price
+        ],200);
+
+        // 1 5 ~ 10 
+        // 2 10 ~ 15
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -60,6 +83,13 @@ class HouseController extends Controller
     public function show(House $id)
     {
         return view('house', [
+            'id' => $id
+        ]);
+    }
+    
+    public function kakaoshow(House $id)
+    {
+        return view('kakao', [
             'id' => $id
         ]);
     }

@@ -7,3 +7,14 @@ tailwind 설치
 
 1.
 id  location    price   price2  img1 img2 img3 site reservationsite contents  (  instasite   youtube)
+
+
+
+1. 기본 페이지 생성 / iframe
+
+2. kakao map api / house 목록 수정 /  price 별로 표시
+
+3. price 가격 표시 중첩 수정 , 찜꽁 , 로그인 api 
+
+
+

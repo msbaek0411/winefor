@@ -110,9 +110,6 @@
 						
 					</li>
 				</div>
-				<div>
-					<iframe src="http://127.0.0.1:8000/kakao" class="w-[54vh] h-[44vh]"></iframe>
-				</div>
 			</div>
 		</section>
 		
@@ -129,9 +126,14 @@
 
 <!-- location modal  -->
 		<div v-show="is_showlocation" class="modalcss">
-			<div id="map" style="width:500px;height:400px;"></div>
-
-				<button class="ml-auto mr-auto w-full" @click="handlelocation_modal()">취소</button>
+			<div class="ml-auto mr-auto w-full">
+				<img src="../../img/cancel.png" alt="취소" class="w-[1.5%] float-right" @click="handlelocation_modal()" style="cursor: pointer">
+			</div>
+			
+			<div class="text-[13px] pb-[18px] pt-[28px]">{{idlogin.location2}}</div>
+			<iframe :src="'http://127.0.0.1:8000/home/kakao/'+ idlogin.id" class="w-full h-[94%]"></iframe>
+				
+				
         </div>
 		<div>
 			
@@ -151,7 +153,7 @@
 		},
 		data() {
 			return {
-				is_show: false,
+				is_show: true,
 				is_showlocation: false,
 				showmain : 0,
 				isShowing : true,

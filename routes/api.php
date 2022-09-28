@@ -21,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/House', 'HouseController@index');
 Route::get('/House/{id}', 'HouseController@index2');
+Route::get('/price/{id}', 'HouseController@priceindex');
 Route::get('/location', 'LocationController@index');
