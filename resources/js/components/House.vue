@@ -36,8 +36,8 @@
 					<li>
 						<strong class="text-[3vh]">{{idlogin.location}}</strong>
 						<div class="w-[3%] ml-auto float-right">	
-							<button v-if="isShowing"  @click="heart()"><img  src="../../img/heart.png"></button>
-							<button v-else @click="heart()"><img  src="../../img/hearton.png" ></button>
+							<button v-if="isShowing"  @click="heart()"><img  src="../../img/hearton.png"></button>
+							<button v-else @click="heart()"><img  src="../../img/heart.png" ></button>
 							<button><img src="../../img/share.png" alt="공유"></button>
 						</div>
 						<div class="">
@@ -99,20 +99,30 @@
 								<div>- 체크인 1일 전 ~ 당일 : 취소 환불 불가</div>
 								<div>- 취소요청 이후에는 취소의 철회가 불가능합니다.</div>
 								<div>- 구매당일 취소시에도 환불 규정에 따라 취소 수수료가 부과됩니다.</div>
+								<div>{{idlogin}}</div>
 							</div>
 						</div>
 					</li>
 					<li>
 						<div class="ml-auto mr-auto w-[17%]">
 							<button>예약하기</button>
-							<button>취소</button>
+							<button>취소</button>	
 						</div>
 						
 					</li>
 				</div>
 			</div>
+
 		</section>
-		
+		<!-- alert -->
+
+		<!-- <div v-show="is_alert" id="alert-1" class="flex p-4 mb-4 bg-blue-100 rounded-lg dark:bg-blue-200 w-[27%] ml-auto absolute top-[89%] left-[72%]" role="alert">
+				<svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-blue-700 dark:text-blue-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+				<span class="sr-only">Info</span>
+				<div class="ml-3 text-sm font-medium text-blue-700 dark:text-blue-800">
+				저장 완료 됐습니다. <a href="#" class="font-semibold underline hover:text-blue-800 dark:hover:text-blue-900">내 저장소</a>. 에서 확인 부탁드립니다.
+				</div>
+			</div> -->
 <!-- homepage modal -->
 		<div v-show="is_show" class="modalcss">
                 <div class="w-full h-[97%]">
@@ -144,19 +154,24 @@
 </template>
 
   <script>
+	import Axios from 'axios';
 
 	export default {
 		props : {
 			idlogin : {
+				required: true
+			},
+			mainid : {
 				required: true
 			}
 		},
 		data() {
 			return {
 				is_show: true,
+				is_alert: false,
 				is_showlocation: false,
 				showmain : 0,
-				isShowing : true,
+				isShowing : false,
       			IljungPlus : require('../../img/heart.png'),
       			IljungMinus : require('../../img/hearton.png')
 			};
@@ -171,6 +186,16 @@
                 },
 			heart() {
 				this.isShowing = !this.isShowing
+				Axios
+					.post('http://127.0.0.1:8000/api/Myhome', {
+						userid: this.mainid,
+						houseid: this.idlogin.id,
+						location: this.idlogin.location,
+						price: this.idlogin.price,
+						img1: this.idlogin.img1,
+						img2: this.idlogin.img2,
+						img3: this.idlogin.img3,
+					})
 			}
 		},
 		created() {

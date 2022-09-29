@@ -7,10 +7,11 @@
 
 					<div><img src="../../img/hotel.png" alt="hotel" style="border-bottom: solid darkgray" class="p-[10%] w-[40%] mr-auto ml-auto"></div>
 					<ul v-for="(test,i) in location.location" :key="i">
-						
-						<li class="text-center p-[4%]">
-							<button class="pl-[15%] pr-[15%]" style="border: solid 1px gray; border-radius: 10px;" @click="Hotelbtn(i)" >{{location.location[i].name}}</button>
-						</li>
+						<div>
+							<li class="text-center p-[4%]">
+								<button class="pl-[15%] pr-[15%]" style="border: solid 1px gray; border-radius: 10px;" @click="Hotelbtn(i)">{{location.location[i].name}}</button>
+							</li>
+						</div>
 					</ul>
 				</div>
 				<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col " >
@@ -52,13 +53,9 @@
 		<!-- 이미지 -->
 		<section class="bg-white py-8">
 			<div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-
 				<nav id="store" class="w-full z-30 top-0 px-6 py-1">
 					<div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
-
-						<a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">
-					SHOW
-				</a>
+						<a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">SHOW</a>
 
 						<div class="flex items-center" id="store-nav-content">
 
@@ -75,10 +72,10 @@
 							</a>
 
 						</div>
-				</div>
+					</div>
 				</nav>
 					
-				<div class="w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col" v-for="(test, i) in House.House" :key="i">
+				<div class="w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col" v-for="(test, i) in House.House" :key="i" v-show="is_show">
 					<a :href="'http://127.0.0.1:8000/home/house/'+ House.House[i].id">
 						<img class="hover:grow hover:shadow-lg h-[29vh] w-[32vh] rounded-[27px]" :src=House.House[i].img1>
 						<div class="pt-3 flex items-center justify-between">
@@ -91,17 +88,17 @@
 					</a>
 				</div>
 				
-				<div class="w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col" v-for="(test, i) in price.price" :key="i">
+				<div class="w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col" v-for="(test, i) in price.price" :key="i" v-show="is_showprice">
 					<a :href="'http://127.0.0.1:8000/home/house/'+ price.price[i].id">
 						<img class="hover:grow hover:shadow-lg h-[29vh] w-[32vh] rounded-[27px]" :src=price.price[i].img1>
 						<div class="pt-3 flex items-center justify-between">
 							<p class="">{{price.price[i].location}}</p>
-							<svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-								<path d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z" />
-							</svg>
+							
 						</div>
-						<p class="pt-1 text-gray-900">{{price.price[i].price}}</p>
 					</a>
+					<button v-if="isShowing" class="w-[8%] ml-auto mt-[-24px]" @click="heart()"><img  src="../../img/heart.png"></button>
+					<button v-else @click="heart()" class="w-[8%] ml-auto mt-[-24px]"><img  src="../../img/hearton.png" ></button>
+						<p class="pt-1 text-gray-900">{{price.price[i].price}}</p>
 				</div> 
 			</div>
 		</section>
@@ -115,30 +112,39 @@ import Axios from 'axios';
 	export default {
 		data() {
 			return {
+				is_show : false,
+				is_showprice : false,
 				House : [],
 				price : [],
 				location : [],
 				loginid : 1,
 				locationNum : 1,
 				priceNum : 1,
+				isShowing : true,
 			};
 		},
 		methods: {
 			Hotelbtn(i) {
 				this.locationNum = i
+				this.is_show = !this.is_show;
 				Axios
 				.get(`http://127.0.0.1:8000/api/House/${this.locationNum}`)
 				.then(res => {
 						this.House = res.data
 					})
+					
 			},
 			Pricebtn(i) {
 				this.priceNum = i
+				this.is_showprice = !this.is_showprice;
 				Axios
 				.get(`http://127.0.0.1:8000/api/price/${this.priceNum}`)
 				.then(res => {
 						this.price = res.data
 					})
+			},
+			heart() {
+				this.isShowing = !this.isShowing
 			}
 
 		},

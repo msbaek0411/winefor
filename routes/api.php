@@ -18,8 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::get('/House', 'HouseController@index');
 Route::get('/House/{id}', 'HouseController@index2');
 Route::get('/price/{id}', 'HouseController@priceindex');
 Route::get('/location', 'LocationController@index');
+Route::get('/Myhome', 'MyhomeController@index');
+
+Route::post('/Myhome', 'MyhomeController@store');
+Route::delete('/Myhome/delete/{id}', 'MyhomeController@destory');
+
