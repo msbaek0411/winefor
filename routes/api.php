@@ -23,7 +23,10 @@ Route::get('/House/{id}', 'HouseController@index2');
 Route::get('/price/{id}', 'HouseController@priceindex');
 Route::get('/location', 'LocationController@index');
 Route::get('/Myhome', 'MyhomeController@index');
+Route::get('/review', 'ReviewController@index');
+Route::get('/verification/{id}', 'MyhomeController@indexverification');
+
 
 Route::post('/Myhome', 'MyhomeController@store');
 Route::delete('/Myhome/delete/{id}', 'MyhomeController@destory');
-
+Route::delete('/Myhome/delete2/{id}', 'MyhomeController@destorytwo');

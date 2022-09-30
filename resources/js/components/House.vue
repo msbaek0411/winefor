@@ -30,14 +30,15 @@
 				</div>
 			</div>
 		</section>
+		<!-- 숙소 예약하기 -->
 		<section>
 			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
 				<div class="pt-[3%]">
 					<li>
 						<strong class="text-[3vh]">{{idlogin.location}}</strong>
 						<div class="w-[3%] ml-auto float-right">	
-							<button v-if="isShowing"  @click="heart()"><img  src="../../img/hearton.png"></button>
-							<button v-else @click="heart()"><img  src="../../img/heart.png" ></button>
+							<button v-if="verification.Myhome[0] == null"  @click="hearton()"><img  src="../../img/heart.png"></button>
+							<button v-else @click="heart(idlogin.id)"><img  src="../../img/hearton.png" ></button>
 							<button><img src="../../img/share.png" alt="공유"></button>
 						</div>
 						<div class="">
@@ -53,7 +54,7 @@
 									<img src="../../img/go.png" alt="" >
 								</div>
 								<div class="text-[17px] decoration-black" style="">
-									<div>{{idlogin.location}} 바로가기</div>
+									<div>{{idlogin.location}} 바로가기{{idlogin.id}}</div>
 								</div>
 							</div>
 							<div class="w-[4%] mt-[-13px] p-[5px] float-right">
@@ -88,42 +89,92 @@
 						<div>최저가 가격 : {{idlogin.price}}</div>
 						<div>최고가 가격 : {{idlogin.price2}}</div>
 					</li>
-					<li>
-						<div class="pt-[7px]">
-							<div class="pb-[7px]">취소 및 환불 규정</div>
-							<div class="ml-[41px]">
-								<div>- 체크인 5일 전 : 무료 취소</div>
-								<div>- 체크인 4일 전 : 취소 수수료 20%</div>
-								<div>- 체크인 3일 전 : 취소 수수료 30%</div>
-								<div>- 체크인 2일 전 : 취소 수수료 50%</div>
-								<div>- 체크인 1일 전 ~ 당일 : 취소 환불 불가</div>
-								<div>- 취소요청 이후에는 취소의 철회가 불가능합니다.</div>
-								<div>- 구매당일 취소시에도 환불 규정에 따라 취소 수수료가 부과됩니다.</div>
-								<div>{{idlogin}}</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="ml-auto mr-auto w-[17%]">
-							<button>예약하기</button>
-							<button>취소</button>	
-						</div>
-						
-					</li>
+
+					
 				</div>
 			</div>
 
 		</section>
-		<!-- alert -->
+		<!-- 카테고리 -->
+		<section>
+			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
+				<button style="border-bottom: solid 1px gray;" @click="categorybtn(1)">숙소위치{{category}}</button>
+				<button style="border-bottom: solid 1px gray;" @click="categorybtn(2)">취소/환불</button>
+				<button style="border-bottom: solid 1px gray;" @click="categorybtn(3)">후기</button>
+				<button style="border-bottom: solid 1px gray;" @click="categorybtn(4)">후기입력</button>
+			</div>
 
-		<!-- <div v-show="is_alert" id="alert-1" class="flex p-4 mb-4 bg-blue-100 rounded-lg dark:bg-blue-200 w-[27%] ml-auto absolute top-[89%] left-[72%]" role="alert">
-				<svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-blue-700 dark:text-blue-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-				<span class="sr-only">Info</span>
-				<div class="ml-3 text-sm font-medium text-blue-700 dark:text-blue-800">
-				저장 완료 됐습니다. <a href="#" class="font-semibold underline hover:text-blue-800 dark:hover:text-blue-900">내 저장소</a>. 에서 확인 부탁드립니다.
+		</section>
+
+		<!-- 지도 -->
+		<section v-if="category == 1">
+			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
+				
+				<iframe :src="'http://127.0.0.1:8000/home/kakao/'+ idlogin.id" class="w-[68vh] h-[55vh] p-[2%]"></iframe>
+				<div class="text-[13px] pb-[18px] pt-[28px]">{{idlogin.location2}}</div>
+				<div class="text-[13px] pb-[18px] pt-[28px]">
+					<div>인천1호선 부평시장역</div>
+					<div>인천1호선 부평시장역</div>
+					<div>인천1호선 부평시장역</div>
 				</div>
-			</div> -->
-<!-- homepage modal -->
+				
+
+			</div>
+		</section>
+
+		<!-- 취소 수수료 -->
+		<section v-else-if="category == 2" class="h-[59vh]">
+			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
+				<li>
+					<div class="pt-[7px]">
+						<div class="pb-[7px]">취소 및 환불 규정</div>
+						<div class="ml-[41px]">
+							<div>- 체크인 5일 전 : 무료 취소</div>
+							<div>- 체크인 4일 전 : 취소 수수료 20%</div>
+							<div>- 체크인 3일 전 : 취소 수수료 30%</div>
+							<div>- 체크인 2일 전 : 취소 수수료 50%</div>
+							<div>- 체크인 1일 전 ~ 당일 : 취소 환불 불가</div>
+							<div>- 취소요청 이후에는 취소의 철회가 불가능합니다.</div>
+							<div>- 구매당일 취소시에도 환불 규정에 따라 취소 수수료가 부과됩니다.</div>
+						</div>
+					</div>
+				</li>
+			</div>
+		</section>
+
+		<!-- 후기 -->
+		<section v-else-if="category == 3" class="h-[59vh]">
+			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
+				<ul>
+					<li class="pt-[3%]">
+						<div>
+							<img src="../../img/smiling-face.png" alt="" class="w-[7%] float-left p-[1%]">
+						</div>
+						<div>
+							<div>별점 5점</div>
+							<div class="float-left">로그인//</div>
+							<div>입력날짜</div>
+						</div>
+						<div>타이틀</div>
+						<div>내용</div>
+					</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+				</ul>
+			</div>
+		</section>
+
+		<section v-else-if="category == 4" class="h-[59vh]">
+			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
+				123
+			</div>
+		</section>
+
+
+
+
+
 		<div v-show="is_show" class="modalcss">
                 <div class="w-full h-[97%]">
 					<div class="w-[80vw] h-[72vh]">
@@ -134,21 +185,6 @@
         </div>
 		
 
-<!-- location modal  -->
-		<div v-show="is_showlocation" class="modalcss">
-			<div class="ml-auto mr-auto w-full">
-				<img src="../../img/cancel.png" alt="취소" class="w-[1.5%] float-right" @click="handlelocation_modal()" style="cursor: pointer">
-			</div>
-			
-			<div class="text-[13px] pb-[18px] pt-[28px]">{{idlogin.location2}}</div>
-			<iframe :src="'http://127.0.0.1:8000/home/kakao/'+ idlogin.id" class="w-full h-[94%]"></iframe>
-				
-				
-        </div>
-		<div>
-			
-		</div>
-		
 
 	</div>
 </template>
@@ -172,8 +208,8 @@
 				is_showlocation: false,
 				showmain : 0,
 				isShowing : false,
-      			IljungPlus : require('../../img/heart.png'),
-      			IljungMinus : require('../../img/hearton.png')
+				verification : [],
+				category : 3,
 			};
 		},
 		methods: {
@@ -184,7 +220,7 @@
 			handlelocation_modal() {
                     this.is_showlocation = !this.is_showlocation;
                 },
-			heart() {
+			hearton() {
 				this.isShowing = !this.isShowing
 				Axios
 					.post('http://127.0.0.1:8000/api/Myhome', {
@@ -196,9 +232,22 @@
 						img2: this.idlogin.img2,
 						img3: this.idlogin.img3,
 					})
-			}
+					.then(res => { window.location.reload(); });
+			},
+			heart(i) {
+				this.isShowing = !this.isShowing
+					Axios
+					.delete(`http://127.0.0.1:8000/api/Myhome/delete2/${i}`)
+					.then(res => { window.location.reload(); });
+				},
+			categorybtn(i){
+					this.category = i
+				}
 		},
 		created() {
+			Axios
+				.get(`http://127.0.0.1:8000/api/verification/${this.idlogin.id}`)
+				.then(res => {this.verification = res.data})
 		}
 	};
   

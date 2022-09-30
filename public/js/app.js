@@ -1919,10 +1919,12 @@ __webpack_require__.r(__webpack_exports__);
       House: [],
       price: [],
       location: [],
+      verification: [],
       loginid: 1,
       locationNum: 1,
       priceNum: 1,
-      isShowing: true
+      isShowing: true,
+      minseok: 30
     };
   },
   methods: {
@@ -1953,6 +1955,9 @@ __webpack_require__.r(__webpack_exports__);
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/location').then(function (res) {
       _this3.location = res.data;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/verification/".concat(this.minseok)).then(function (res) {
+      _this3.verification = res.data;
     });
   }
 });
@@ -1987,8 +1992,8 @@ __webpack_require__.r(__webpack_exports__);
       is_showlocation: false,
       showmain: 0,
       isShowing: false,
-      IljungPlus: __webpack_require__(/*! ../../img/heart.png */ "./resources/img/heart.png"),
-      IljungMinus: __webpack_require__(/*! ../../img/hearton.png */ "./resources/img/hearton.png")
+      verification: [],
+      category: 3
     };
   },
   methods: {
@@ -1999,7 +2004,7 @@ __webpack_require__.r(__webpack_exports__);
     handlelocation_modal: function handlelocation_modal() {
       this.is_showlocation = !this.is_showlocation;
     },
-    heart: function heart() {
+    hearton: function hearton() {
       this.isShowing = !this.isShowing;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/api/Myhome', {
         userid: this.mainid,
@@ -2009,10 +2014,27 @@ __webpack_require__.r(__webpack_exports__);
         img1: this.idlogin.img1,
         img2: this.idlogin.img2,
         img3: this.idlogin.img3
+      }).then(function (res) {
+        window.location.reload();
       });
+    },
+    heart: function heart(i) {
+      this.isShowing = !this.isShowing;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("http://127.0.0.1:8000/api/Myhome/delete2/".concat(i)).then(function (res) {
+        window.location.reload();
+      });
+    },
+    categorybtn: function categorybtn(i) {
+      this.category = i;
     }
   },
-  created: function created() {}
+  created: function created() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/verification/".concat(this.idlogin.id)).then(function (res) {
+      _this.verification = res.data;
+    });
+  }
 });
 
 /***/ }),
@@ -2262,17 +2284,7 @@ var render = function render() {
       }
     }), _vm._v(" "), _c("div", {
       staticClass: "pt-3 flex items-center justify-between"
-    }, [_c("p", {}, [_vm._v(_vm._s(_vm.House.House[i].location))]), _vm._v(" "), _c("svg", {
-      staticClass: "h-6 w-6 fill-current text-gray-500 hover:text-black",
-      attrs: {
-        xmlns: "http://www.w3.org/2000/svg",
-        viewBox: "0 0 24 24"
-      }
-    }, [_c("path", {
-      attrs: {
-        d: "M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z"
-      }
-    })])]), _vm._v(" "), _c("p", {
+    }, [_c("p", {}, [_vm._v(_vm._s(_vm.House.House[i].location))])]), _vm._v(" "), _c("p", {
       staticClass: "pt-1 text-gray-900"
     }, [_vm._v(_vm._s(_vm.House.House[i].price))])])]);
   }), _vm._v(" "), _vm._l(_vm.price.price, function (test, i) {
@@ -2450,25 +2462,25 @@ var render = function render() {
     staticClass: "text-[3vh]"
   }, [_vm._v(_vm._s(_vm.idlogin.location))]), _vm._v(" "), _c("div", {
     staticClass: "w-[3%] ml-auto float-right"
-  }, [_vm.isShowing ? _c("button", {
+  }, [_vm.verification.Myhome[0] == null ? _c("button", {
     on: {
       click: function click($event) {
-        return _vm.heart();
-      }
-    }
-  }, [_c("img", {
-    attrs: {
-      src: __webpack_require__(/*! ../../img/hearton.png */ "./resources/img/hearton.png")
-    }
-  })]) : _c("button", {
-    on: {
-      click: function click($event) {
-        return _vm.heart();
+        return _vm.hearton();
       }
     }
   }, [_c("img", {
     attrs: {
       src: __webpack_require__(/*! ../../img/heart.png */ "./resources/img/heart.png")
+    }
+  })]) : _c("button", {
+    on: {
+      click: function click($event) {
+        return _vm.heart(_vm.idlogin.id);
+      }
+    }
+  }, [_c("img", {
+    attrs: {
+      src: __webpack_require__(/*! ../../img/hearton.png */ "./resources/img/hearton.png")
     }
   })]), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _c("div", {}, [_c("img", {
     staticClass: "w-[3%] float-left",
@@ -2490,7 +2502,7 @@ var render = function render() {
     staticClass: "pt-[7px]"
   }, [_vm._m(4), _vm._v(" "), _c("div", {
     staticClass: "text-[17px] decoration-black"
-  }, [_c("div", [_vm._v(_vm._s(_vm.idlogin.location) + " 바로가기")])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c("div", {
+  }, [_c("div", [_vm._v(_vm._s(_vm.idlogin.location) + " 바로가기" + _vm._s(_vm.idlogin.id))])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c("div", {
     staticClass: "text-[12px] pl-[50px]",
     staticStyle: {
       color: "gray"
@@ -2504,13 +2516,74 @@ var render = function render() {
     staticStyle: {
       color: "gray"
     }
-  }, [_vm._v("\n\t\t\t\t\t\t\t\t※실제 사이트로 이동합니다.\n\t\t\t\t\t\t\t")])])]), _vm._v(" "), _c("li", [_c("div", [_vm._v("최저가 가격 : " + _vm._s(_vm.idlogin.price))]), _vm._v(" "), _c("div", [_vm._v("최고가 가격 : " + _vm._s(_vm.idlogin.price2))])]), _vm._v(" "), _c("li", [_c("div", {
-    staticClass: "pt-[7px]"
+  }, [_vm._v("\n\t\t\t\t\t\t\t\t※실제 사이트로 이동합니다.\n\t\t\t\t\t\t\t")])])]), _vm._v(" "), _c("li", [_c("div", [_vm._v("최저가 가격 : " + _vm._s(_vm.idlogin.price))]), _vm._v(" "), _c("div", [_vm._v("최고가 가격 : " + _vm._s(_vm.idlogin.price2))])])])])]), _vm._v(" "), _c("section", [_c("div", {
+    staticClass: "w-[33%]",
+    staticStyle: {
+      "margin-left": "auto",
+      "margin-right": "auto"
+    }
+  }, [_c("button", {
+    staticStyle: {
+      "border-bottom": "solid 1px gray"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.categorybtn(1);
+      }
+    }
+  }, [_vm._v("숙소위치" + _vm._s(_vm.category))]), _vm._v(" "), _c("button", {
+    staticStyle: {
+      "border-bottom": "solid 1px gray"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.categorybtn(2);
+      }
+    }
+  }, [_vm._v("취소/환불")]), _vm._v(" "), _c("button", {
+    staticStyle: {
+      "border-bottom": "solid 1px gray"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.categorybtn(3);
+      }
+    }
+  }, [_vm._v("후기")]), _vm._v(" "), _c("button", {
+    staticStyle: {
+      "border-bottom": "solid 1px gray"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.categorybtn(4);
+      }
+    }
+  }, [_vm._v("후기입력")])])]), _vm._v(" "), _vm.category == 1 ? _c("section", [_c("div", {
+    staticClass: "w-[33%]",
+    staticStyle: {
+      "margin-left": "auto",
+      "margin-right": "auto"
+    }
+  }, [_c("iframe", {
+    staticClass: "w-[68vh] h-[55vh] p-[2%]",
+    attrs: {
+      src: "http://127.0.0.1:8000/home/kakao/" + _vm.idlogin.id
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "text-[13px] pb-[18px] pt-[28px]"
+  }, [_vm._v(_vm._s(_vm.idlogin.location2))]), _vm._v(" "), _vm._m(8)])]) : _vm.category == 2 ? _c("section", {
+    staticClass: "h-[59vh]"
+  }, [_vm._m(9)]) : _vm.category == 3 ? _c("section", {
+    staticClass: "h-[59vh]"
+  }, [_vm._m(10)]) : _vm.category == 4 ? _c("section", {
+    staticClass: "h-[59vh]"
   }, [_c("div", {
-    staticClass: "pb-[7px]"
-  }, [_vm._v("취소 및 환불 규정")]), _vm._v(" "), _c("div", {
-    staticClass: "ml-[41px]"
-  }, [_c("div", [_vm._v("- 체크인 5일 전 : 무료 취소")]), _vm._v(" "), _c("div", [_vm._v("- 체크인 4일 전 : 취소 수수료 20%")]), _vm._v(" "), _c("div", [_vm._v("- 체크인 3일 전 : 취소 수수료 30%")]), _vm._v(" "), _c("div", [_vm._v("- 체크인 2일 전 : 취소 수수료 50%")]), _vm._v(" "), _c("div", [_vm._v("- 체크인 1일 전 ~ 당일 : 취소 환불 불가")]), _vm._v(" "), _c("div", [_vm._v("- 취소요청 이후에는 취소의 철회가 불가능합니다.")]), _vm._v(" "), _c("div", [_vm._v("- 구매당일 취소시에도 환불 규정에 따라 취소 수수료가 부과됩니다.")]), _vm._v(" "), _c("div", [_vm._v(_vm._s(_vm.idlogin))])])])]), _vm._v(" "), _vm._m(8)])])]), _vm._v(" "), _c("div", {
+    staticClass: "w-[33%]",
+    staticStyle: {
+      "margin-left": "auto",
+      "margin-right": "auto"
+    }
+  }, [_vm._v("\n\t\t\t\t123\n\t\t\t")])]) : _vm._e(), _vm._v(" "), _c("div", {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -2535,38 +2608,7 @@ var render = function render() {
         return _vm.handle_modal();
       }
     }
-  }, [_vm._v("취소")])]), _vm._v(" "), _c("div", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.is_showlocation,
-      expression: "is_showlocation"
-    }],
-    staticClass: "modalcss"
-  }, [_c("div", {
-    staticClass: "ml-auto mr-auto w-full"
-  }, [_c("img", {
-    staticClass: "w-[1.5%] float-right",
-    staticStyle: {
-      cursor: "pointer"
-    },
-    attrs: {
-      src: __webpack_require__(/*! ../../img/cancel.png */ "./resources/img/cancel.png"),
-      alt: "취소"
-    },
-    on: {
-      click: function click($event) {
-        return _vm.handlelocation_modal();
-      }
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "text-[13px] pb-[18px] pt-[28px]"
-  }, [_vm._v(_vm._s(_vm.idlogin.location2))]), _vm._v(" "), _c("iframe", {
-    staticClass: "w-full h-[94%]",
-    attrs: {
-      src: "http://127.0.0.1:8000/home/kakao/" + _vm.idlogin.id
-    }
-  })]), _vm._v(" "), _c("div")]);
+  }, [_vm._v("취소")])])]);
 };
 
 var staticRenderFns = [function () {
@@ -2699,9 +2741,47 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("li", [_c("div", {
-    staticClass: "ml-auto mr-auto w-[17%]"
-  }, [_c("button", [_vm._v("예약하기")]), _vm._v(" "), _c("button", [_vm._v("취소")])])]);
+  return _c("div", {
+    staticClass: "text-[13px] pb-[18px] pt-[28px]"
+  }, [_c("div", [_vm._v("인천1호선 부평시장역")]), _vm._v(" "), _c("div", [_vm._v("인천1호선 부평시장역")]), _vm._v(" "), _c("div", [_vm._v("인천1호선 부평시장역")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "w-[33%]",
+    staticStyle: {
+      "margin-left": "auto",
+      "margin-right": "auto"
+    }
+  }, [_c("li", [_c("div", {
+    staticClass: "pt-[7px]"
+  }, [_c("div", {
+    staticClass: "pb-[7px]"
+  }, [_vm._v("취소 및 환불 규정")]), _vm._v(" "), _c("div", {
+    staticClass: "ml-[41px]"
+  }, [_c("div", [_vm._v("- 체크인 5일 전 : 무료 취소")]), _vm._v(" "), _c("div", [_vm._v("- 체크인 4일 전 : 취소 수수료 20%")]), _vm._v(" "), _c("div", [_vm._v("- 체크인 3일 전 : 취소 수수료 30%")]), _vm._v(" "), _c("div", [_vm._v("- 체크인 2일 전 : 취소 수수료 50%")]), _vm._v(" "), _c("div", [_vm._v("- 체크인 1일 전 ~ 당일 : 취소 환불 불가")]), _vm._v(" "), _c("div", [_vm._v("- 취소요청 이후에는 취소의 철회가 불가능합니다.")]), _vm._v(" "), _c("div", [_vm._v("- 구매당일 취소시에도 환불 규정에 따라 취소 수수료가 부과됩니다.")])])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "w-[33%]",
+    staticStyle: {
+      "margin-left": "auto",
+      "margin-right": "auto"
+    }
+  }, [_c("ul", [_c("li", {
+    staticClass: "pt-[3%]"
+  }, [_c("div", [_c("img", {
+    staticClass: "w-[7%] float-left p-[1%]",
+    attrs: {
+      src: __webpack_require__(/*! ../../img/smiling-face.png */ "./resources/img/smiling-face.png"),
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", [_c("div", [_vm._v("별점 5점")]), _vm._v(" "), _c("div", {
+    staticClass: "float-left"
+  }, [_vm._v("로그인//")]), _vm._v(" "), _c("div", [_vm._v("입력날짜")])]), _vm._v(" "), _c("div", [_vm._v("타이틀")]), _vm._v(" "), _c("div", [_vm._v("내용")])]), _vm._v(" "), _c("li", [_vm._v("1")]), _vm._v(" "), _c("li", [_vm._v("1")]), _vm._v(" "), _c("li", [_vm._v("1")])])]);
 }];
 render._withStripped = true;
 
@@ -51018,17 +51098,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/img/cancel.png":
-/*!**********************************!*\
-  !*** ./resources/img/cancel.png ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/cancel.png?b383d8a4d94358fdc5888b0c60a55241";
-
-/***/ }),
-
 /***/ "./resources/img/go.png":
 /*!******************************!*\
   !*** ./resources/img/go.png ***!
@@ -51147,6 +51216,17 @@ module.exports = "/images/reservation.png?576e48d664a41422074afdff5c9e474d";
 /***/ (function(module, exports) {
 
 module.exports = "/images/share.png?98421238ff691d40cb8c81a7176744b8";
+
+/***/ }),
+
+/***/ "./resources/img/smiling-face.png":
+/*!****************************************!*\
+  !*** ./resources/img/smiling-face.png ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/smiling-face.png?ada9e0a29ecf9dcddbb64957ec5f422b";
 
 /***/ }),
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Myhome;
+use App\House;
 
 class MyhomeController extends Controller
 {
@@ -18,6 +19,18 @@ class MyhomeController extends Controller
             'Myhome' => $Myhome
         ], 200);
     }
+
+
+    public function indexverification($i)
+    {
+        $Myhome = Myhome::where('houseid', $i)->get();
+
+        return response()->json([
+            'Myhome' => $Myhome,
+            // 'house' => $house
+        ], 200);
+    }
+
 
     public function store() {
         $validated = request()->validate([
@@ -45,6 +58,16 @@ class MyhomeController extends Controller
         // $ChatList = ChatList::find($i);
         // $ChatList->delete();
         Myhome::where('id', $i)->delete();
+              
+        
+    }
+    
+    public function destorytwo($i)
+    {
+        // data 생성 
+        // $ChatList = ChatList::find($i);
+        // $ChatList->delete();
+        Myhome::where('houseid', $i)->delete();
               
         
     }
