@@ -31,6 +31,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a href="/myhome">myhome</a>
+                <a href="/search">search</a>
+                <a href="/promotion">promotion</a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->

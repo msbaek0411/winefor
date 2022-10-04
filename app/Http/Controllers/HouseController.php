@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\House;
+use App\User;
 
 class HouseController extends Controller
 {
@@ -25,6 +26,15 @@ class HouseController extends Controller
     public function index2($i)
     {
         $House = House::where('locaid', $i)->get();
+
+        return response()->json([
+            'House' => $House
+        ],200);
+    }
+
+    public function index3($i)
+    {
+        $House = House::where('id', $i)->get();
 
         return response()->json([
             'House' => $House

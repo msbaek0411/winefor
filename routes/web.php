@@ -21,6 +21,14 @@ Route::get('/myhome', function () {
     return view('myhome');
 });
 
+Route::get('/search', function () {
+    return view('search');
+});
+
+Route::get('/promotion', function () {
+    return view('promotions');
+});
+
 
 Auth::routes();
 

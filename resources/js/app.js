@@ -25,6 +25,10 @@ Vue.component('House2', require('./components/House.vue').default);
 
 Vue.component('Myhome', require('./components/Myhome.vue').default);
 
+Vue.component('Search', require('./components/Search.vue').default);
+
+Vue.component('Promotions', require('./components/Promotions.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

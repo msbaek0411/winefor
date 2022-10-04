@@ -18,3 +18,8 @@ id  location    price   price2  img1 img2 img3 site reservationsite contents  ( 
 
 
 
+
+
+4. 추천 사이트 , 전체/진행/종료 중인 프로모션
+
+    전체/ 진행중 종료 프로모션promotions - idx , 프로모션 이름 , 프로모션 내용 , house id, house location 날짜

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<section v-if="showmain == 1">
+		<section>
 			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
 				<div id="carouselExampleIndicators" class="carousel slide">
 					<div class="carousel-indicators">
@@ -54,7 +54,7 @@
 									<img src="../../img/go.png" alt="" >
 								</div>
 								<div class="text-[17px] decoration-black" style="">
-									<div>{{idlogin.location}} 바로가기{{idlogin.id}}</div>
+									<div>{{idlogin.location}} 바로가기</div>
 								</div>
 							</div>
 							<div class="w-[4%] mt-[-13px] p-[5px] float-right">
@@ -146,28 +146,35 @@
 		<section v-else-if="category == 3" class="h-[59vh]">
 			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
 				<ul>
-					<li class="pt-[3%]">
+					<li class="pt-[3%]" v-for="(test, i ) in Review.Review" :key="i">
 						<div>
 							<img src="../../img/smiling-face.png" alt="" class="w-[7%] float-left p-[1%]">
 						</div>
 						<div>
-							<div>별점 5점</div>
-							<div class="float-left">로그인//</div>
-							<div>입력날짜</div>
+							<div>별점 : {{Review.Review[i].count}}</div>
+							<div class="float-left">아이디 : {{Review.Review[i].username}}</div>
+							<div>{{Review.Review[i].created}}</div>
 						</div>
-						<div>타이틀</div>
-						<div>내용</div>
+						<br>
+						<div>타이틀 : {{Review.Review[i].title}}</div>
+						<div class="pb-[21px]">내용 : {{Review.Review[i].contents}}</div>
 					</li>
-					<li>1</li>
-					<li>1</li>
-					<li>1</li>
 				</ul>
 			</div>
 		</section>
 
+<!-- 후기입력 -->
 		<section v-else-if="category == 4" class="h-[59vh]">
-			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
-				123
+			<div class="w-[33%] p-[3%] mt-[2%]" style="margin-left: auto; margin-right: auto; border: solid 1px lightgray">
+				<div class="mb-6">
+					<label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">제목</label>
+					<input type="text" id="large-input" v-model="title" class="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+				</div>
+				<div class="mb-6">
+					<label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">내용</label>
+					<input type="text" id="default-input" v-model="contents" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+				</div>
+				<button @click="submitReview">저장</button>
 			</div>
 		</section>
 
@@ -199,17 +206,23 @@
 			},
 			mainid : {
 				required: true
+			},
+			usernamet : {
+				required: true
 			}
 		},
 		data() {
 			return {
-				is_show: true,
+				is_show: false,
 				is_alert: false,
 				is_showlocation: false,
 				showmain : 0,
 				isShowing : false,
 				verification : [],
-				category : 3,
+				category : 4,
+				Review : [],
+				title : '',
+				contents : '',
 			};
 		},
 		methods: {
@@ -242,12 +255,29 @@
 				},
 			categorybtn(i){
 					this.category = i
-				}
+				},
+			submitReview() {
+				Axios
+					.post('http://127.0.0.1:8000/api/review', {
+						title: this.title,
+						contents: this.contents,
+						userid : this.mainid,
+						username: this.usernamet,
+						houseid : this.idlogin.id,
+						housename : this.idlogin.location,
+						count: 1
+					})
+					.then(res => { window.location.reload(); });
+			}
 		},
 		created() {
 			Axios
 				.get(`http://127.0.0.1:8000/api/verification/${this.idlogin.id}`)
 				.then(res => {this.verification = res.data})
+
+			Axios
+				.get(`http://127.0.0.1:8000/api/review/${this.idlogin.id}`)
+				.then(res => {this.Review = res.data})
 		}
 	};
   

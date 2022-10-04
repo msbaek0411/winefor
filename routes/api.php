@@ -20,13 +20,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/House', 'HouseController@index');
 Route::get('/House/{id}', 'HouseController@index2');
+Route::get('/Houses/{index3}', 'HouseController@index3');
 Route::get('/price/{id}', 'HouseController@priceindex');
+
 Route::get('/location', 'LocationController@index');
-Route::get('/Myhome', 'MyhomeController@index');
-Route::get('/review', 'ReviewController@index');
+
+Route::get('/review/{id}', 'ReviewController@index');
+Route::post('/review', 'ReviewController@store');
+
 Route::get('/verification/{id}', 'MyhomeController@indexverification');
-
-
+Route::get('/Myhome', 'MyhomeController@index');
 Route::post('/Myhome', 'MyhomeController@store');
 Route::delete('/Myhome/delete/{id}', 'MyhomeController@destory');
 Route::delete('/Myhome/delete2/{id}', 'MyhomeController@destorytwo');
+
+Route::get('/promotions', 'promotionController@index');
+Route::get('/promotions/all', 'promotionController@indexall');
+Route::get('/promotions/ing', 'promotionController@indexing');
+Route::get('/promotions/end', 'promotionController@indexend');
+
