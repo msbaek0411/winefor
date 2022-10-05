@@ -1,6 +1,31 @@
 <template>
 
-	<div class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal pr-[25%] pl-[25%]">
+	<div class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal pr-[25%] pl-[25%] media768padding">
+
+		<!-- 프로모션 -->
+		<section class="bg-white py-8">
+			<div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+				<nav id="store" class="w-full z-30 top-0 px-6 py-1">
+					<div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
+						<a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">프로모션 살펴보기</a>
+					</div>
+				</nav>
+					
+				<div class="w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col" v-for="(test, i) in promotions.Promotion" :key="i" >
+					<a>
+						<img class="hover:grow hover:shadow-lg h-[54vh] w-[32vh] rounded-[27px]" :src=promotions.Promotion[i].img>
+						<div class="pt-3 flex items-center justify-between">
+							<p class="text-[22px] truncate">타이틀 : {{promotions.Promotion[i].title}}</p>
+						</div>
+                        <div class="text-[11px] truncate">이벤트 기간 : {{promotions.Promotion[i].startdate}} ~ {{promotions.Promotion[i].enddate}}</div>
+						
+						<p class="pt-1 text-gray-900"></p>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- 카테고리 -->
 		<section>
 			<div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
 				<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col " >
@@ -9,7 +34,7 @@
 					<ul v-for="(test,i) in location.location" :key="i">
 						<div>
 							<li class="text-center p-[4%]">
-								<button class="pl-[15%] pr-[15%]" style="border: solid 1px gray; border-radius: 10px;" @click="Hotelbtn(i)">{{location.location[i].name}}</button>
+								<button class="pl-[15%] pr-[15%]" style="border: solid 1px gray; border-radius: 10px;" @click="Hotelbtn(i)" :class="{ backgroundC: isBind1 }">{{location.location[i].name}}{{test123}}</button>
 							</li>
 						</div>
 					</ul>
@@ -49,6 +74,7 @@
 				</div>
 			</div>
 		</section>
+		
 
 		<!-- 이미지 -->
 		<section class="bg-white py-8">
@@ -116,11 +142,17 @@ import Axios from 'axios';
 				price : [],
 				location : [],
 				verification: [],
+				promotions : [],
 				loginid : 1,
 				locationNum : 1,
 				priceNum : 1,
 				isShowing : true,
 				minseok : 30,
+				isBind1 : false,
+				isBind2 : false,
+				isBind3 : false,
+				isBind4 : false,
+				
 				
 			};
 		},
@@ -128,11 +160,25 @@ import Axios from 'axios';
 			Hotelbtn(i) {
 				this.locationNum = i
 				this.is_show = !this.is_show;
+				if( i == 0)
+				{
+					this.isBind1 = true
+				}
+				else if (i == 1) {
+					this.isBind2 = true
+				}
+				else if (i == 2) {
+					this.isBind3 = true
+				}
+				else if (i == 3) {
+					this.isBind4 = true
+				}
 				Axios
 				.get(`http://127.0.0.1:8000/api/House/${this.locationNum}`)
 				.then(res => {
 						this.House = res.data
 					})
+				
 					
 			},
 			Pricebtn(i) {
@@ -161,10 +207,31 @@ import Axios from 'axios';
 			Axios
 				.get(`http://127.0.0.1:8000/api/verification/${this.minseok}`)
 				.then(res => {this.verification = res.data})
+			
+			Axios
+				.get(`http://127.0.0.1:8000/api/House/1`)
+				.then(res => {
+						this.House = res.data
+					})
+			Axios 
+                .get('http://127.0.0.1:8000/api/promotions')
+                .then(res => { this.promotions = res.data })
 		}
 	};
   
   </script>
   <style>
+
+	.backgroundC {
+		background-color: darkgray;
+    	color: whitesmoke;
+	}
+
+
+	@media screen and (max-width: 768px) {
+		.media768padding {
+			padding: 0px;
+		}
+	}
   </style>
   

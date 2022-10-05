@@ -29,6 +29,7 @@ Vue.component('Search', require('./components/Search.vue').default);
 
 Vue.component('Promotions', require('./components/Promotions.vue').default);
 
+Vue.component('Test123', require('./components/Test123.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

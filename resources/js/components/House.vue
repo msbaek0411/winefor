@@ -1,29 +1,29 @@
 <template>
 	<div>
 		<section>
-			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
+			<div class="w-[33%] media768" style="margin-left: auto; margin-right: auto; ">
 				<div id="carouselExampleIndicators" class="carousel slide">
-					<div class="carousel-indicators">
+					<div class="carousel-indicators" style="z-index: 0;">
 						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
 						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
 					</div>
 					<div class="carousel-inner h-[46vh]">
 						<div class="carousel-item active">
-						<img :src=idlogin.img1 class="d-block w-100" alt="slide1">
+						<img :src=idlogin.img1 class="d-block w-100 rounded-[48px]" alt="slide1">
 						</div>
 						<div class="carousel-item">
-						<img :src=idlogin.img2 class="d-block w-100" alt="slide2">
+						<img :src=idlogin.img2 class="d-block w-100 rounded-[48px]" alt="slide2">
 						</div>
 						<div class="carousel-item">
-						<img :src=idlogin.img3 class="d-block w-100" alt="slide3">
+						<img :src=idlogin.img3 class="d-block w-100 rounded-[48px]" alt="slide3">
 						</div>
 					</div>
-					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="z-index: 0;">
 						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Previous</span>
 					</button>
-					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="z-index: 0;">
 						<span class="carousel-control-next-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Next</span>
 					</button>
@@ -32,7 +32,7 @@
 		</section>
 		<!-- 숙소 예약하기 -->
 		<section>
-			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
+			<div class="w-[33%] media768" style="margin-left: auto; margin-right: auto;">
 				<div class="pt-[3%]">
 					<li>
 						<strong class="text-[3vh]">{{idlogin.location}}</strong>
@@ -49,40 +49,45 @@
 					</li>
 					<li> 
 						<div>
-							<div class="pt-[7px]">
-								<div class="w-[4%] float-left mr-[16px] mt-[7px] ml-[2px]">
-									<img src="../../img/go.png" alt="" >
+							<a :href="idlogin.site" style="text-decoration: none;">
+								<div class="pt-[7px]" style="color: black;">
+									<div class="w-[4%] float-left mr-[16px] mt-[7px] ml-[2px]">
+										<img src="../../img/go.png" alt="" >
+									</div>
+									<div class="text-[17px] decoration-black" style="">
+										<div>{{idlogin.location}} 바로가기</div>
+									</div>
 								</div>
-								<div class="text-[17px] decoration-black" style="">
-									<div>{{idlogin.location}} 바로가기</div>
+								<div class="w-[4%] mt-[-13px] p-[5px] float-right">
+									<img src="../../img/next.svg" alt="" >
 								</div>
-							</div>
-							<div class="w-[4%] mt-[-13px] p-[5px] float-right">
-								<img src="../../img/next.svg" alt="" >
-							</div>
-							<div class="text-[12px] pl-[50px]" style="color: gray">
-								※실제 사이트로 이동합니다.
-							</div>
+								<div class="text-[12px] pl-[50px]" style="color: gray">
+									※실제 사이트로 이동합니다.
+								</div>
+							</a>
+
 							
 						</div>
 					</li>
 					<li> 
 						<div>
-							<div class="pt-[7px]">
-								<div class="w-[4%] float-left mr-[16px] mt-[7px] ml-[2px]">
-									<img src="../../img/reservation.png" alt="" >
+							<a :href="idlogin.ressite" style="text-decoration: none;">
+								<div class="pt-[7px]" style="color: black;">
+									<div class="w-[4%] float-left mr-[16px] mt-[7px] ml-[2px]">
+										<img src="../../img/reservation.png" alt="" >
+									</div>
+									<div class="text-[17px] decoration-black" style="">
+										<div>{{idlogin.location}} 예약하기123</div>
+									</div>
 								</div>
-								<div class="text-[17px] decoration-black" style="">
-									<div>{{idlogin.location}} 예약하기</div>
+								<div class="w-[4%] mt-[-13px] p-[5px] float-right">
+									<img src="../../img/next.svg" alt="" >
 								</div>
-							</div>
-							<div class="w-[4%] mt-[-13px] p-[5px] float-right">
-								<img src="../../img/next.svg" alt="" >
-							</div>
-							<div class="text-[12px] pl-[50px]" style="color: gray">
-								※실제 사이트로 이동합니다.
-							</div>
-							
+								<div class="text-[12px] pl-[50px]" style="color: gray">
+									※실제 사이트로 이동합니다.
+								</div>
+							</a>
+
 						</div>
 					</li>
 					<li>
@@ -97,18 +102,18 @@
 		</section>
 		<!-- 카테고리 -->
 		<section>
-			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
-				<button style="border-bottom: solid 1px gray;" @click="categorybtn(1)">숙소위치{{category}}</button>
-				<button style="border-bottom: solid 1px gray;" @click="categorybtn(2)">취소/환불</button>
-				<button style="border-bottom: solid 1px gray;" @click="categorybtn(3)">후기</button>
-				<button style="border-bottom: solid 1px gray;" @click="categorybtn(4)">후기입력</button>
+			<div class="w-[33%] pb-[1%] pt-[1%] media768" style="margin-left: auto; margin-right: auto; border-bottom: solid 1px darkgray;">
+				<button style="" @click="categorybtn(1)" :class="{ fontweight: isBind1 }">숙소위치</button>
+				<button style="" @click="categorybtn(2)" :class="{ fontweight: isBind2 }">취소/환불</button>
+				<button style="" @click="categorybtn(3)" :class="{ fontweight: isBind3 }">후기</button>
+				<button style="" @click="categorybtn(4)" :class="{ fontweight: isBind4 }">후기입력</button>
 			</div>
 
 		</section>
 
 		<!-- 지도 -->
 		<section v-if="category == 1">
-			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
+			<div class="w-[33%] media768" style="margin-left: auto; margin-right: auto; ">
 				
 				<iframe :src="'http://127.0.0.1:8000/home/kakao/'+ idlogin.id" class="w-[68vh] h-[55vh] p-[2%]"></iframe>
 				<div class="text-[13px] pb-[18px] pt-[28px]">{{idlogin.location2}}</div>
@@ -124,7 +129,7 @@
 
 		<!-- 취소 수수료 -->
 		<section v-else-if="category == 2" class="h-[59vh]">
-			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
+			<div class="w-[33%] media768" style="margin-left: auto; margin-right: auto;">
 				<li>
 					<div class="pt-[7px]">
 						<div class="pb-[7px]">취소 및 환불 규정</div>
@@ -144,7 +149,7 @@
 
 		<!-- 후기 -->
 		<section v-else-if="category == 3" class="h-[59vh]">
-			<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
+			<div class="w-[33%] media768" style="margin-left: auto; margin-right: auto;">
 				<ul>
 					<li class="pt-[3%]" v-for="(test, i ) in Review.Review" :key="i">
 						<div>
@@ -165,7 +170,7 @@
 
 <!-- 후기입력 -->
 		<section v-else-if="category == 4" class="h-[59vh]">
-			<div class="w-[33%] p-[3%] mt-[2%]" style="margin-left: auto; margin-right: auto; border: solid 1px lightgray">
+			<div class="w-[33%] p-[3%] mt-[2%] media768" style="margin-left: auto; margin-right: auto; border: solid 1px lightgray; ">
 				<div class="mb-6">
 					<label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">제목</label>
 					<input type="text" id="large-input" v-model="title" class="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -213,16 +218,20 @@
 		},
 		data() {
 			return {
-				is_show: false,
+				is_show: true,
 				is_alert: false,
 				is_showlocation: false,
 				showmain : 0,
 				isShowing : false,
 				verification : [],
-				category : 4,
+				category : 2,
 				Review : [],
 				title : '',
 				contents : '',
+				isBind1 : false,
+				isBind2 : false,
+				isBind3 : false,
+				isBind4 : false,
 			};
 		},
 		methods: {
@@ -255,6 +264,31 @@
 				},
 			categorybtn(i){
 					this.category = i
+					if ( i == 1) {
+						this.isBind1 = true;
+						this.isBind2 = false;
+						this.isBind3 = false;
+						this.isBind4 = false;
+					}
+					else if ( i == 2) {
+						this.isBind1 = false;
+						this.isBind2 = true;
+						this.isBind3 = false;
+						this.isBind4 = false;
+					}
+					else if ( i == 3) {
+						this.isBind1 = false;
+						this.isBind2 = false;
+						this.isBind3 = true;
+						this.isBind4 = false;
+					}
+					else if ( i == 4) {
+						this.isBind1 = false;
+						this.isBind2 = false;
+						this.isBind3 = false;
+						this.isBind4 = true;
+					}
+					
 				},
 			submitReview() {
 				Axios
@@ -300,6 +334,15 @@
 		padding-left: 0px;
 		padding-bottom: 1%;
 		border-bottom: solid 1px lightgray;
+	}	
+	.fontweight {
+		font-weight: bolder;
+	}
+
+	@media screen and (max-width: 768px) {
+		.media768 {
+			width: 80%;
+		}
 	}
 
   </style>

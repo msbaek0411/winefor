@@ -1,7 +1,6 @@
 <template>
-<div class="w-[33%]" style="margin-left: auto; margin-right: auto;">
-    {{num}}
-    {{choice}}
+<div class="w-[33%] media768width" style="margin-left: auto; margin-right: auto; ">
+
     <div  v-if="choice == 1">
         <div class="pb-[22%]">
             <div class="text-center pb-[8%] pt-[6%] text-[25px]" >혼자 여행이십니까??</div>
@@ -423,4 +422,10 @@ export default {
 
 </script>
   <style>
+
+    @media screen and (max-width: 768px) {
+		.media768width {
+			width: 63%;
+		}
+	}
   </style>

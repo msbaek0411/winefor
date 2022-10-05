@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal pr-[25%] pl-[25%]">
+    <div class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal pr-[25%] pl-[25%] media768padding">
 
 		<!-- 이미지 -->
 		<section class="bg-white py-8">
@@ -26,7 +26,7 @@
 					</div>
 				</nav>
 				<div class="w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col" v-for="(test, i) in myhome.Myhome" :key="i">
-					<a :href="'http://127.0.0.1:8000/home/house/'+ myhome.Myhome[i].id">
+					<a :href="'http://127.0.0.1:8000/home/house/'+ myhome.Myhome[i].houseid">
 						<img class="hover:grow hover:shadow-lg h-[29vh] w-[32vh] rounded-[27px]" :src=myhome.Myhome[i].img1>
 						<div class="pt-3 flex items-center justify-between">
 							<p class="">{{myhome.Myhome[i].location}}</p>
@@ -38,7 +38,7 @@
 							
 						</div>
 				</div>
-			</div>{{myhome.Myhome}}
+			</div>
 		</section>		
     </div>
     
@@ -90,5 +90,9 @@ export default {
   
   </script>
   <style>
-
+	@media screen and (max-width: 768px) {
+		.media768padding {
+			padding: 0px;
+		}
+	}
   </style>
