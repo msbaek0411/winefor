@@ -22,18 +22,18 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm h-[110px] media768123">
-            <div class="container mb-[3vh] absolute">
-                <div class="pl-[35%]">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        Winfor
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a href="/myhome">myhome</a>
+                <a href="/search">search</a>
+                <a href="/promotion">promotion</a>
 
-                    <input type="text" style="border: solid 1px darkgray;" class="w-[57vh] h-[4vh]" placeholder="어디로 떠날 생각이신가요?" >
-                </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -41,7 +41,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto w-[44%]">
+                    <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -67,6 +67,7 @@
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
+                                    </form>
                                 </div>
                             </li>
                         @endguest
@@ -74,24 +75,11 @@
                 </div>
             </div>
         </nav>
-        <div class="text-center pt-[10px]">
-            <a href="/" class="pr-[5vh]">myhome</a>
-            <a href="/search" class="pr-[5vh]">search</a>
-            <a href="/promotion" class="pr-[5vh]">promotion</a>
-        </div>
-        
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
-    <style>
-            @media screen and (max-width: 768px) {
-                    .media768123 {
-                        display: none;
-                    }
-                }
-    </style>
 
 </body>
 </html>

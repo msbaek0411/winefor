@@ -1912,6 +1912,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    mainid: {
+      required: true
+    }
+  },
   data: function data() {
     return {
       is_show: false,
@@ -1925,11 +1930,7 @@ __webpack_require__.r(__webpack_exports__);
       locationNum: 1,
       priceNum: 1,
       isShowing: true,
-      minseok: 30,
-      isBind1: false,
-      isBind2: false,
-      isBind3: false,
-      isBind4: false
+      minseok: 30
     };
   },
   methods: {
@@ -1938,17 +1939,6 @@ __webpack_require__.r(__webpack_exports__);
 
       this.locationNum = i;
       this.is_show = !this.is_show;
-
-      if (i == 0) {
-        this.isBind1 = true;
-      } else if (i == 1) {
-        this.isBind2 = true;
-      } else if (i == 2) {
-        this.isBind3 = true;
-      } else if (i == 3) {
-        this.isBind4 = true;
-      }
-
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/House/".concat(this.locationNum)).then(function (res) {
         _this.House = res.data;
       });
@@ -2018,7 +2008,7 @@ __webpack_require__.r(__webpack_exports__);
       showmain: 0,
       isShowing: false,
       verification: [],
-      category: 2,
+      category: 3,
       Review: [],
       title: '',
       contents: '',
@@ -2320,30 +2310,11 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "bg-white text-gray-600 work-sans leading-normal text-base tracking-normal pr-[25%] pl-[25%] media768padding"
-  }, [_c("section", {
-    staticClass: "bg-white py-8"
-  }, [_c("div", {
-    staticClass: "container mx-auto flex items-center flex-wrap pt-4 pb-12"
-  }, [_vm._m(0), _vm._v(" "), _vm._l(_vm.promotions.Promotion, function (test, i) {
-    return _c("div", {
-      key: i,
-      staticClass: "w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col"
-    }, [_c("a", [_c("img", {
-      staticClass: "hover:grow hover:shadow-lg h-[54vh] w-[32vh] rounded-[27px]",
-      attrs: {
-        src: _vm.promotions.Promotion[i].img
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "pt-3 flex items-center justify-between"
-    }, [_c("p", {
-      staticClass: "text-[22px] truncate"
-    }, [_vm._v("타이틀 : " + _vm._s(_vm.promotions.Promotion[i].title))])]), _vm._v(" "), _c("div", {
-      staticClass: "text-[11px] truncate"
-    }, [_vm._v("이벤트 기간 : " + _vm._s(_vm.promotions.Promotion[i].startdate) + " ~ " + _vm._s(_vm.promotions.Promotion[i].enddate))]), _vm._v(" "), _c("p", {
-      staticClass: "pt-1 text-gray-900"
-    })])]);
-  })], 2)]), _vm._v(" "), _c("section", [_c("div", {
+    staticClass: "bg-white text-gray-600 work-sans leading-normal text-base tracking-normal pr-[25%] pl-[25%] media768padding w-[58%] ml-auto mr-auto media768width2",
+    staticStyle: {
+      padding: "0%"
+    }
+  }, [_vm._m(0), _vm._v(" "), _c("section", [_c("div", {
     staticClass: "container mx-auto flex items-center flex-wrap pt-4 pb-12"
   }, [_c("div", {
     staticClass: "w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col"
@@ -2396,7 +2367,7 @@ var render = function render() {
       }
     }, [_vm._v(_vm._s(_vm.location.location[i].name))])])]);
   })], 2), _vm._v(" "), _c("div", {
-    staticClass: "w-full md:w-1/4 xl:w-1/4 p-6 flex flex-col"
+    staticClass: "w-full md:w-1/4 xl:w-1/4 p-6 flex flex-col media768none"
   }, [_vm._m(4), _vm._v(" "), _c("ul", [_c("li", {
     staticClass: "text-center p-[4%]"
   }, [_c("button", {
@@ -2453,67 +2424,12 @@ var render = function render() {
     staticClass: "bg-white py-8"
   }, [_c("div", {
     staticClass: "container mx-auto flex items-center flex-wrap pt-4 pb-12"
-  }, [_c("nav", {
-    staticClass: "w-full z-30 top-0 px-6 py-1",
-    attrs: {
-      id: "store"
-    }
-  }, [_c("div", {
-    staticClass: "w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3"
-  }, [_c("a", {
-    staticClass: "uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("SHOW")]), _vm._v(" "), _c("div", {
-    staticClass: "flex items-center",
-    attrs: {
-      id: "store-nav-content"
-    }
-  }, [_c("a", {
-    staticClass: "pl-3 inline-block no-underline hover:text-black",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("svg", {
-    staticClass: "fill-current hover:text-black",
-    attrs: {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "24",
-      height: "24",
-      viewBox: "0 0 24 24"
-    }
-  }, [_c("path", {
-    attrs: {
-      d: "M7 11H17V13H7zM4 7H20V9H4zM10 15H14V17H10z"
-    }
-  })])]), _vm._v(" "), _c("a", {
-    staticClass: "pl-3 inline-block no-underline hover:text-black",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("svg", {
-    staticClass: "fill-current hover:text-black",
-    attrs: {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "24",
-      height: "24",
-      viewBox: "0 0 24 24"
-    }
-  }, [_c("path", {
-    attrs: {
-      d: "M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z"
-    }
-  })])])])])]), _vm._v(" "), _vm._l(_vm.House.House, function (test, i) {
+  }, [_vm._m(5), _vm._v(" "), _c("div", {
+    staticClass: "w-full"
+  }, _vm._l(_vm.House.House, function (test, i) {
     return _c("div", {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: _vm.is_show,
-        expression: "is_show"
-      }],
       key: i,
-      staticClass: "w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col"
+      staticClass: "md:w-1/3 xl:w-1/3 p-6 flex flex-col float-left media768padding2"
     }, [_c("a", {
       attrs: {
         href: "http://127.0.0.1:8000/home/house/" + _vm.House.House[i].id
@@ -2525,55 +2441,31 @@ var render = function render() {
       }
     }), _vm._v(" "), _c("div", {
       staticClass: "pt-3 flex items-center justify-between"
-    }, [_c("p", {}, [_vm._v(_vm._s(_vm.House.House[i].location))])]), _vm._v(" "), _c("p", {
+    }, [_c("p", {}, [_vm._v(_vm._s(_vm.House.House[i].location) + _vm._s(_vm.mainid))])]), _vm._v(" "), _c("p", {
       staticClass: "pt-1 text-gray-900"
     }, [_vm._v(_vm._s(_vm.House.House[i].price))])])]);
-  }), _vm._v(" "), _vm._l(_vm.price.price, function (test, i) {
+  }), 0)])]), _vm._v(" "), _c("section", {
+    staticClass: "bg-white py-8"
+  }, [_c("div", {
+    staticClass: "container mx-auto flex items-center flex-wrap pt-4 pb-12"
+  }, [_vm._m(6), _vm._v(" "), _vm._l(_vm.promotions.Promotion, function (test, i) {
     return _c("div", {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: _vm.is_showprice,
-        expression: "is_showprice"
-      }],
       key: i,
       staticClass: "w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col"
-    }, [_c("a", {
+    }, [_c("a", [_c("img", {
+      staticClass: "hover:grow hover:shadow-lg h-[54vh] w-[32vh] rounded-[27px]",
       attrs: {
-        href: "http://127.0.0.1:8000/home/house/" + _vm.price.price[i].id
-      }
-    }, [_c("img", {
-      staticClass: "hover:grow hover:shadow-lg h-[29vh] w-[32vh] rounded-[27px]",
-      attrs: {
-        src: _vm.price.price[i].img1
+        src: _vm.promotions.Promotion[i].img
       }
     }), _vm._v(" "), _c("div", {
       staticClass: "pt-3 flex items-center justify-between"
-    }, [_c("p", {}, [_vm._v(_vm._s(_vm.price.price[i].location))])])]), _vm._v(" "), _vm.isShowing ? _c("button", {
-      staticClass: "w-[8%] ml-auto mt-[-24px]",
-      on: {
-        click: function click($event) {
-          return _vm.heart();
-        }
-      }
-    }, [_c("img", {
-      attrs: {
-        src: __webpack_require__(/*! ../../img/heart.png */ "./resources/img/heart.png")
-      }
-    })]) : _c("button", {
-      staticClass: "w-[8%] ml-auto mt-[-24px]",
-      on: {
-        click: function click($event) {
-          return _vm.heart();
-        }
-      }
-    }, [_c("img", {
-      attrs: {
-        src: __webpack_require__(/*! ../../img/hearton.png */ "./resources/img/hearton.png")
-      }
-    })]), _vm._v(" "), _c("p", {
+    }, [_c("p", {
+      staticClass: "text-[22px] truncate"
+    }, [_vm._v("타이틀 : " + _vm._s(_vm.promotions.Promotion[i].title))])]), _vm._v(" "), _c("div", {
+      staticClass: "text-[11px] truncate"
+    }, [_vm._v("이벤트 기간 : " + _vm._s(_vm.promotions.Promotion[i].startdate) + " ~ " + _vm._s(_vm.promotions.Promotion[i].enddate))]), _vm._v(" "), _c("p", {
       staticClass: "pt-1 text-gray-900"
-    }, [_vm._v(_vm._s(_vm.price.price[i].price))])]);
+    })])]);
   })], 2)])]);
 };
 
@@ -2581,19 +2473,13 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("nav", {
-    staticClass: "w-full z-30 top-0 px-6 py-1",
+  return _c("div", [_vm._v("\n\t\t\t총 조회수"), _c("img", {
     attrs: {
-      id: "store"
+      src: "https://www.cutercounter.com/hits.php?id=hmxffado&nd=6&style=3",
+      border: "0",
+      alt: "hit counter"
     }
-  }, [_c("div", {
-    staticClass: "w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3"
-  }, [_c("a", {
-    staticClass: "uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("프로모션 살펴보기")])])]);
+  })]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -2650,6 +2536,40 @@ var staticRenderFns = [function () {
       alt: "price"
     }
   })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("nav", {
+    staticClass: "w-full z-30 top-0 px-6 py-1",
+    attrs: {
+      id: "store"
+    }
+  }, [_c("div", {
+    staticClass: "w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3"
+  }, [_c("a", {
+    staticClass: "uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("SHOW")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("nav", {
+    staticClass: "w-full z-30 top-0 px-6 py-1",
+    attrs: {
+      id: "store"
+    }
+  }, [_c("div", {
+    staticClass: "w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3"
+  }, [_c("a", {
+    staticClass: "uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("프로모션 살펴보기")])])]);
 }];
 render._withStripped = true;
 
@@ -2869,7 +2789,13 @@ var render = function render() {
     }, [_vm._v("아이디 : " + _vm._s(_vm.Review.Review[i].username))]), _vm._v(" "), _c("div", [_vm._v(_vm._s(_vm.Review.Review[i].created))])]), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", [_vm._v("타이틀 : " + _vm._s(_vm.Review.Review[i].title))]), _vm._v(" "), _c("div", {
       staticClass: "pb-[21px]"
     }, [_vm._v("내용 : " + _vm._s(_vm.Review.Review[i].contents))])]);
-  }), 0)])]) : _vm.category == 4 ? _c("section", {
+  }), 0)]), _vm._v(" "), _vm.Review.Review == 0 ? _c("div", {
+    staticClass: "w-[33%] media768",
+    staticStyle: {
+      "margin-left": "auto",
+      "margin-right": "auto"
+    }
+  }, [_vm._m(11)]) : _vm._e()]) : _vm.category == 4 ? _c("section", {
     staticClass: "h-[59vh]"
   }, [_c("div", {
     staticClass: "w-[33%] p-[3%] mt-[2%] media768",
@@ -3136,6 +3062,13 @@ var staticRenderFns = [function () {
       alt: ""
     }
   })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "p-[1%] text-[gray]"
+  }, [_c("div", [_vm._v("아직 후기가 없습니다")]), _vm._v(" "), _c("div", [_vm._v("후기 작성해주세요~")])]);
 }];
 render._withStripped = true;
 
@@ -8512,7 +8445,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.backgroundC {\n\t\tbackground-color: darkgray;\n    \tcolor: whitesmoke;\n}\n@media screen and (max-width: 768px) {\n.media768padding {\n\t\t\tpadding: 0px;\n}\n}\n  ", ""]);
+exports.push([module.i, "\n.backgroundC {\n\t\tbackground-color: darkgray;\n    \tcolor: whitesmoke;\n}\n@media screen and (max-width: 768px) {\n.media768padding {\n\t\t\tpadding: 0px;\n}\n.media768padding2 {\n\t\t\tpadding: 2%;\n}\n.media768width2{\n\t\t\twidth: 100%\n}\n.media768none{\n\t\t\tdisplay: none;\n}\n}\n  ", ""]);
 
 // exports
 

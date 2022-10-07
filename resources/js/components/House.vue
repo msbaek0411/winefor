@@ -166,6 +166,15 @@
 					</li>
 				</ul>
 			</div>
+			<div class="w-[33%] media768" style="margin-left: auto; margin-right: auto;" v-if="Review.Review == 0">
+				<div class="p-[1%] text-[gray]">
+					<div>아직 후기가 없습니다</div>
+					<div>후기 작성해주세요~</div>
+					
+				</div>
+					
+					
+			</div>
 		</section>
 
 <!-- 후기입력 -->
@@ -224,7 +233,7 @@
 				showmain : 0,
 				isShowing : false,
 				verification : [],
-				category : 2,
+				category : 3,
 				Review : [],
 				title : '',
 				contents : '',

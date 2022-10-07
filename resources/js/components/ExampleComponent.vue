@@ -1,31 +1,11 @@
-<template>
+<template >
 
-	<div class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal pr-[25%] pl-[25%] media768padding">
+	<div class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal pr-[25%] pl-[25%] media768padding w-[58%] ml-auto mr-auto media768width2" style="padding:0%;">
+		<div>
+			총 조회수<img src="https://www.cutercounter.com/hits.php?id=hmxffado&nd=6&style=3" border="0" alt="hit counter">
+		</div>
 
-		<!-- 프로모션 -->
-		<section class="bg-white py-8">
-			<div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-				<nav id="store" class="w-full z-30 top-0 px-6 py-1">
-					<div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
-						<a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">프로모션 살펴보기</a>
-					</div>
-				</nav>
-					
-				<div class="w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col" v-for="(test, i) in promotions.Promotion" :key="i" >
-					<a>
-						<img class="hover:grow hover:shadow-lg h-[54vh] w-[32vh] rounded-[27px]" :src=promotions.Promotion[i].img>
-						<div class="pt-3 flex items-center justify-between">
-							<p class="text-[22px] truncate">타이틀 : {{promotions.Promotion[i].title}}</p>
-						</div>
-                        <div class="text-[11px] truncate">이벤트 기간 : {{promotions.Promotion[i].startdate}} ~ {{promotions.Promotion[i].enddate}}</div>
-						
-						<p class="pt-1 text-gray-900"></p>
-					</a>
-				</div>
-			</div>
-		</section>
-
-		<!-- 카테고리 -->
+				<!-- 카테고리 -->
 		<section>
 			<div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
 				<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col " >
@@ -55,7 +35,7 @@
 						</li>
 					</ul>
 				</div>
-				<div class="w-full md:w-1/4 xl:w-1/4 p-6 flex flex-col " >
+				<div class="w-full md:w-1/4 xl:w-1/4 p-6 flex flex-col media768none " >
 					<div><img src="../../img/price.png" alt="price" style="border-bottom: solid darkgray" class="p-[10%] w-[40%] mr-auto ml-auto"></div>
 					<ul>
 						<li class="text-center p-[4%]">
@@ -74,58 +54,59 @@
 				</div>
 			</div>
 		</section>
-		
 
-		<!-- 이미지 -->
-		<section class="bg-white py-8">
+				<!-- 이미지 -->
+				<section class="bg-white py-8">
 			<div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
 				<nav id="store" class="w-full z-30 top-0 px-6 py-1">
 					<div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
 						<a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">SHOW</a>
 
-						<div class="flex items-center" id="store-nav-content">
+					</div>
+				</nav>
+				<div class="w-full">
+					<div class=" md:w-1/3 xl:w-1/3 p-6 flex flex-col float-left media768padding2" v-for="(test, i) in House.House" :key="i">
+						<a :href="'http://127.0.0.1:8000/home/house/'+ House.House[i].id">
+							<img class="hover:grow hover:shadow-lg h-[29vh] w-[32vh] rounded-[27px]" :src=House.House[i].img1>
+							<div class="pt-3 flex items-center justify-between">
+								<p class="">{{House.House[i].location}}{{mainid}}</p>
+							</div>
+							
+							<p class="pt-1 text-gray-900">{{House.House[i].price}}</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
 
-							<a class="pl-3 inline-block no-underline hover:text-black" href="#">
-								<svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-									<path d="M7 11H17V13H7zM4 7H20V9H4zM10 15H14V17H10z" />
-								</svg>
-							</a>
 
-							<a class="pl-3 inline-block no-underline hover:text-black" href="#">
-								<svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-									<path d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z" />
-								</svg>
-							</a>
-
-						</div>
+		<!-- 프로모션 -->
+		<section class="bg-white py-8">
+			<div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+				<nav id="store" class="w-full z-30 top-0 px-6 py-1">
+					<div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
+						<a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">프로모션 살펴보기</a>
 					</div>
 				</nav>
 					
-				<div class="w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col" v-for="(test, i) in House.House" :key="i" v-show="is_show">
-					<a :href="'http://127.0.0.1:8000/home/house/'+ House.House[i].id">
-						<img class="hover:grow hover:shadow-lg h-[29vh] w-[32vh] rounded-[27px]" :src=House.House[i].img1>
+				<div class="w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col" v-for="(test, i) in promotions.Promotion" :key="i" >
+					<a>
+						<img class="hover:grow hover:shadow-lg h-[54vh] w-[32vh] rounded-[27px]" :src=promotions.Promotion[i].img>
 						<div class="pt-3 flex items-center justify-between">
-							<p class="">{{House.House[i].location}}</p>
+							<p class="text-[22px] truncate">타이틀 : {{promotions.Promotion[i].title}}</p>
 						</div>
+                        <div class="text-[11px] truncate">이벤트 기간 : {{promotions.Promotion[i].startdate}} ~ {{promotions.Promotion[i].enddate}}</div>
 						
-						<p class="pt-1 text-gray-900">{{House.House[i].price}}</p>
+						<p class="pt-1 text-gray-900"></p>
 					</a>
 				</div>
-				
-				<div class="w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col" v-for="(test, i) in price.price" :key="i" v-show="is_showprice">
-					<a :href="'http://127.0.0.1:8000/home/house/'+ price.price[i].id">
-						<img class="hover:grow hover:shadow-lg h-[29vh] w-[32vh] rounded-[27px]" :src=price.price[i].img1>
-						<div class="pt-3 flex items-center justify-between">
-							<p class="">{{price.price[i].location}}</p>
-							
-						</div>
-					</a>
-					<button v-if="isShowing" class="w-[8%] ml-auto mt-[-24px]" @click="heart()"><img  src="../../img/heart.png"></button>
-					<button v-else @click="heart()" class="w-[8%] ml-auto mt-[-24px]"><img  src="../../img/hearton.png" ></button>
-						<p class="pt-1 text-gray-900">{{price.price[i].price}}</p>
-				</div> 
 			</div>
 		</section>
+
+
+		
+
+
 	</div>
 	  
   </template>
@@ -134,6 +115,11 @@
 import Axios from 'axios';
 
 	export default {
+		props : {
+			mainid  : {
+				required: true
+			}
+		},
 		data() {
 			return {
 				is_show : false,
@@ -148,11 +134,6 @@ import Axios from 'axios';
 				priceNum : 1,
 				isShowing : true,
 				minseok : 30,
-				isBind1 : false,
-				isBind2 : false,
-				isBind3 : false,
-				isBind4 : false,
-				
 				
 			};
 		},
@@ -160,19 +141,6 @@ import Axios from 'axios';
 			Hotelbtn(i) {
 				this.locationNum = i
 				this.is_show = !this.is_show;
-				if( i == 0)
-				{
-					this.isBind1 = true
-				}
-				else if (i == 1) {
-					this.isBind2 = true
-				}
-				else if (i == 2) {
-					this.isBind3 = true
-				}
-				else if (i == 3) {
-					this.isBind4 = true
-				}
 				Axios
 				.get(`http://127.0.0.1:8000/api/House/${this.locationNum}`)
 				.then(res => {
@@ -231,6 +199,15 @@ import Axios from 'axios';
 	@media screen and (max-width: 768px) {
 		.media768padding {
 			padding: 0px;
+		}
+		.media768padding2 {
+			padding: 2%;
+		}
+		.media768width2{
+			width: 100%
+		}
+		.media768none{
+			display: none;
 		}
 	}
   </style>
