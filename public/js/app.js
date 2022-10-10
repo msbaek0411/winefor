@@ -1939,7 +1939,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.locationNum = i;
       this.is_show = !this.is_show;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/House/".concat(this.locationNum)).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/House/".concat(this.locationNum)).then(function (res) {
         _this.House = res.data;
       });
     },
@@ -1948,7 +1948,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.priceNum = i;
       this.is_showprice = !this.is_showprice;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/price/".concat(this.priceNum)).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/price/".concat(this.priceNum)).then(function (res) {
         _this2.price = res.data;
       });
     },
@@ -1959,16 +1959,16 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this3 = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/location').then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/location').then(function (res) {
       _this3.location = res.data;
     });
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/verification/".concat(this.minseok)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/verification/".concat(this.minseok)).then(function (res) {
       _this3.verification = res.data;
     });
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/House/1").then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/House/1").then(function (res) {
       _this3.House = res.data;
     });
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/promotions').then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/promotions').then(function (res) {
       _this3.promotions = res.data;
     });
   }
@@ -2028,7 +2028,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     hearton: function hearton() {
       this.isShowing = !this.isShowing;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/api/Myhome', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/Myhome', {
         userid: this.mainid,
         houseid: this.idlogin.id,
         location: this.idlogin.location,
@@ -2042,7 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     heart: function heart(i) {
       this.isShowing = !this.isShowing;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("http://127.0.0.1:8000/api/Myhome/delete2/".concat(i)).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/Myhome/delete2/".concat(i)).then(function (res) {
         window.location.reload();
       });
     },
@@ -2072,7 +2072,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     submitReview: function submitReview() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/api/review', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/review', {
         title: this.title,
         contents: this.contents,
         userid: this.mainid,
@@ -2088,10 +2088,10 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/verification/".concat(this.idlogin.id)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/verification/".concat(this.idlogin.id)).then(function (res) {
       _this.verification = res.data;
     });
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/review/".concat(this.idlogin.id)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/review/".concat(this.idlogin.id)).then(function (res) {
       _this.Review = res.data;
     });
   }
@@ -2325,9 +2325,6 @@ var render = function render() {
       staticClass: "text-center p-[4%]"
     }, [_c("button", {
       staticClass: "pl-[15%] pr-[15%]",
-      "class": {
-        backgroundC: _vm.isBind1
-      },
       staticStyle: {
         border: "solid 1px gray",
         "border-radius": "10px"
@@ -2337,7 +2334,7 @@ var render = function render() {
           return _vm.Hotelbtn(i);
         }
       }
-    }, [_vm._v(_vm._s(_vm.location.location[i].name) + _vm._s(_vm.test123))])])])]);
+    }, [_vm._v(_vm._s(_vm.location.location[i].name))])])])]);
   })], 2), _vm._v(" "), _c("div", {
     staticClass: "w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col"
   }, [_vm._m(2), _vm._v(" "), _vm._l(_vm.location.location, function (test, i) {
@@ -2432,7 +2429,7 @@ var render = function render() {
       staticClass: "md:w-1/3 xl:w-1/3 p-6 flex flex-col float-left media768padding2"
     }, [_c("a", {
       attrs: {
-        href: "http://127.0.0.1:8000/home/house/" + _vm.House.House[i].id
+        href: "/home/house/" + _vm.House.House[i].id
       }
     }, [_c("img", {
       staticClass: "hover:grow hover:shadow-lg h-[29vh] w-[32vh] rounded-[27px]",
@@ -2441,7 +2438,7 @@ var render = function render() {
       }
     }), _vm._v(" "), _c("div", {
       staticClass: "pt-3 flex items-center justify-between"
-    }, [_c("p", {}, [_vm._v(_vm._s(_vm.House.House[i].location) + _vm._s(_vm.mainid))])]), _vm._v(" "), _c("p", {
+    }, [_c("p", {}, [_vm._v(_vm._s(_vm.House.House[i].location))])]), _vm._v(" "), _c("p", {
       staticClass: "pt-1 text-gray-900"
     }, [_vm._v(_vm._s(_vm.House.House[i].price))])])]);
   }), 0)])]), _vm._v(" "), _c("section", {
@@ -2766,7 +2763,7 @@ var render = function render() {
   }, [_c("iframe", {
     staticClass: "w-[68vh] h-[55vh] p-[2%]",
     attrs: {
-      src: "http://127.0.0.1:8000/home/kakao/" + _vm.idlogin.id
+      src: "/home/kakao/" + _vm.idlogin.id
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "text-[13px] pb-[18px] pt-[28px]"

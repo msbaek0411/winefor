@@ -14,7 +14,7 @@
 					<ul v-for="(test,i) in location.location" :key="i">
 						<div>
 							<li class="text-center p-[4%]">
-								<button class="pl-[15%] pr-[15%]" style="border: solid 1px gray; border-radius: 10px;" @click="Hotelbtn(i)" :class="{ backgroundC: isBind1 }">{{location.location[i].name}}{{test123}}</button>
+								<button class="pl-[15%] pr-[15%]" style="border: solid 1px gray; border-radius: 10px;" @click="Hotelbtn(i)">{{location.location[i].name}}</button>
 							</li>
 						</div>
 					</ul>
@@ -66,10 +66,10 @@
 				</nav>
 				<div class="w-full">
 					<div class=" md:w-1/3 xl:w-1/3 p-6 flex flex-col float-left media768padding2" v-for="(test, i) in House.House" :key="i">
-						<a :href="'http://127.0.0.1:8000/home/house/'+ House.House[i].id">
+						<a :href="'/home/house/'+ House.House[i].id">
 							<img class="hover:grow hover:shadow-lg h-[29vh] w-[32vh] rounded-[27px]" :src=House.House[i].img1>
 							<div class="pt-3 flex items-center justify-between">
-								<p class="">{{House.House[i].location}}{{mainid}}</p>
+								<p class="">{{House.House[i].location}}</p>
 							</div>
 							
 							<p class="pt-1 text-gray-900">{{House.House[i].price}}</p>
@@ -142,7 +142,7 @@ import Axios from 'axios';
 				this.locationNum = i
 				this.is_show = !this.is_show;
 				Axios
-				.get(`http://127.0.0.1:8000/api/House/${this.locationNum}`)
+				.get(`/api/House/${this.locationNum}`)
 				.then(res => {
 						this.House = res.data
 					})
@@ -153,7 +153,7 @@ import Axios from 'axios';
 				this.priceNum = i
 				this.is_showprice = !this.is_showprice;
 				Axios
-				.get(`http://127.0.0.1:8000/api/price/${this.priceNum}`)
+				.get(`/api/price/${this.priceNum}`)
 				.then(res => {
 						this.price = res.data
 					})
@@ -166,23 +166,23 @@ import Axios from 'axios';
 		created() {
 			Axios
 				.get(
-						'http://127.0.0.1:8000/api/location'
+						'/api/location'
 					)
 				.then(res => {
 						this.location = res.data
 					})
 					
 			Axios
-				.get(`http://127.0.0.1:8000/api/verification/${this.minseok}`)
+				.get(`/api/verification/${this.minseok}`)
 				.then(res => {this.verification = res.data})
 			
 			Axios
-				.get(`http://127.0.0.1:8000/api/House/1`)
+				.get(`/api/House/1`)
 				.then(res => {
 						this.House = res.data
 					})
 			Axios 
-                .get('http://127.0.0.1:8000/api/promotions')
+                .get('/api/promotions')
                 .then(res => { this.promotions = res.data })
 		}
 	};

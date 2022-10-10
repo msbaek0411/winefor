@@ -32,7 +32,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <input type="text" style="border: solid 1px darkgray;" class="w-[57vh] h-[4vh]" placeholder="어디로 떠날 생각이신가요?" >
+                    <input type="text" style="border: solid 1px darkgray;" class="w-[57vh] h-[4vh] rounded-[8px] p-[2%]" placeholder="어디로 떠날 생각이신가요?" >
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->

@@ -115,7 +115,7 @@
 		<section v-if="category == 1">
 			<div class="w-[33%] media768" style="margin-left: auto; margin-right: auto; ">
 				
-				<iframe :src="'http://127.0.0.1:8000/home/kakao/'+ idlogin.id" class="w-[68vh] h-[55vh] p-[2%]"></iframe>
+				<iframe :src="'/home/kakao/'+ idlogin.id" class="w-[68vh] h-[55vh] p-[2%]"></iframe>
 				<div class="text-[13px] pb-[18px] pt-[28px]">{{idlogin.location2}}</div>
 				<div class="text-[13px] pb-[18px] pt-[28px]">
 					<div>인천1호선 부평시장역</div>
@@ -254,7 +254,7 @@
 			hearton() {
 				this.isShowing = !this.isShowing
 				Axios
-					.post('http://127.0.0.1:8000/api/Myhome', {
+					.post('/api/Myhome', {
 						userid: this.mainid,
 						houseid: this.idlogin.id,
 						location: this.idlogin.location,
@@ -268,7 +268,7 @@
 			heart(i) {
 				this.isShowing = !this.isShowing
 					Axios
-					.delete(`http://127.0.0.1:8000/api/Myhome/delete2/${i}`)
+					.delete(`/api/Myhome/delete2/${i}`)
 					.then(res => { window.location.reload(); });
 				},
 			categorybtn(i){
@@ -301,7 +301,7 @@
 				},
 			submitReview() {
 				Axios
-					.post('http://127.0.0.1:8000/api/review', {
+					.post('/api/review', {
 						title: this.title,
 						contents: this.contents,
 						userid : this.mainid,
@@ -315,11 +315,11 @@
 		},
 		created() {
 			Axios
-				.get(`http://127.0.0.1:8000/api/verification/${this.idlogin.id}`)
+				.get(`/api/verification/${this.idlogin.id}`)
 				.then(res => {this.verification = res.data})
 
 			Axios
-				.get(`http://127.0.0.1:8000/api/review/${this.idlogin.id}`)
+				.get(`/api/review/${this.idlogin.id}`)
 				.then(res => {this.Review = res.data})
 		}
 	};
