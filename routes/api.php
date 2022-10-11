@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/House', 'HouseController@index');
 Route::get('/House/{id}', 'HouseController@index2');
+Route::get('/Houses/{id}', 'HouseController@index3');
 Route::get('/Houses/{index3}', 'HouseController@index3');
 Route::get('/price/{id}', 'HouseController@priceindex');
 
@@ -39,3 +40,4 @@ Route::get('/promotions/all', 'promotionController@indexall');
 Route::get('/promotions/ing', 'promotionController@indexing');
 Route::get('/promotions/end', 'promotionController@indexend');
 
+Route::post('/search/{id}', 'SearchController@store');

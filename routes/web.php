@@ -21,8 +21,8 @@ Route::get('/myhome', function () {
     return view('myhome');
 });
 
-Route::get('/search', function () {
-    return view('search');
+Route::get('/where', function () {
+    return view('where');
 });
 
 Route::get('/promotion', function () {
@@ -37,3 +37,5 @@ Route::get('/home/house/{id}', 'HouseController@show');
 
 Route::get('/home/kakao/{id}', 'HouseController@kakaoshow');
 
+
+Route::get('/search', 'SearchController@index');

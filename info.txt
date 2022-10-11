@@ -1,9 +1,9 @@
 vue 설치
 vue-auth
 tailwind 설치
-
-
-
+laravel 7.30.6
+php - 7.2.10
+scout - 8.0
 
 1.
 id  location    price   price2  img1 img2 img3 site reservationsite contents  (  instasite   youtube)

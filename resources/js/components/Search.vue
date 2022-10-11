@@ -1,431 +1,176 @@
 <template>
-<div class="w-[33%] media768width" style="margin-left: auto; margin-right: auto; ">
-
-    <div  v-if="choice == 1">
-        <div class="pb-[22%]">
-            <div class="text-center pb-[8%] pt-[6%] text-[25px]" >혼자 여행이십니까??</div>
-            <div>
-                <img src="../../img/이/1/1.jpg" alt="" class="w-[61%] rounded-[13%] ml-[20%]">
-            </div>
-            
-        </div>
+    <div class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal pr-[25%] pl-[25%]">
         <div>
-            <button @click="search(12)" class="float-left w-[45%] mr-[10%] h-[118px] rounded-[27px]" style="border: solid darkgray;">네 혼자 갑니다.</button>
-        </div>
-        <div>
-            <button @click="search(10)" class="w-[45%]  h-[118px] rounded-[27px]" style="border: solid darkgray;">아뇨 동행이 있습니다.</button>
-        </div>
-	</div>
-
-    <div v-else-if="choice == 2">
-        <div class="pb-[22%]">
-            <div class="text-center pb-[8%] pt-[6%] text-[25px]" >기념일때문에 가시는 겁니까?</div>
-            <div>
-                <img src="../../img/이/1/2.jpg" alt="" class="w-[61%] rounded-[13%] ml-[20%]">
-            </div>
-            
-        </div>
-        <div>
-            <button @click="search(1)" class="float-left w-[45%] mr-[10%] h-[118px] rounded-[27px]" style="border: solid darkgray;">네 기념일때문에 갑니다.</button>
-        </div>
-        <div>
-            <button @click="search(2)" class="w-[45%]  h-[118px] rounded-[27px]" style="border: solid darkgray;">아니요 휴가 차 갑니다.</button>
-        </div>
-	</div>
-
-    <div v-else-if="choice == 10">
-        <div class="pb-[22%]">
-            <div class="text-center pb-[8%] pt-[6%] text-[25px]" >연인이랑 갑니까?</div>
-            <div>
-                <img src="../../img/이/1/2.jpg" alt="" class="w-[61%] rounded-[13%] ml-[20%]">
-            </div>
-            
-        </div>
-        <div>
-            <button @click="search(11)" class="float-left w-[45%] mr-[10%] h-[118px] rounded-[27px]" style="border: solid darkgray;">네 연인이랑 갑니다.</button>
-        </div>
-        <div>
-            <button @click="search(12)" class="w-[45%]  h-[118px] rounded-[27px]" style="border: solid darkgray;">아니요 친구랑 갑니다.</button>
-        </div>
-	</div>
-
-    <div v-else-if="choice == 11">
-        <div class="pb-[22%]">
-            <div class="text-center pb-[8%] pt-[6%] text-[25px]" >기념일때문에 갑니까?</div>
-            <div>
-                <img src="../../img/이/1/2.jpg" alt="" class="w-[61%] rounded-[13%] ml-[20%]">
-            </div>
-            
-        </div>
-        <div>
-            <button @click="search(12)" class="float-left w-[45%] mr-[10%] h-[118px] rounded-[27px]" style="border: solid darkgray;">네 기념일 때문에 갑니다.</button>
-        </div>
-        <div>
-            <button @click="search(12)" class="w-[45%]  h-[118px] rounded-[27px]" style="border: solid darkgray;">아니요 휴가라 갑니다.</button>
-        </div>
-	</div>
-
-    <div v-else-if="choice == 12">
-        <div class="pb-[22%]">
-            <div class="text-center pb-[8%] pt-[6%] text-[25px]" >가까운 곳으로 갑니까?</div>
-            <div>
-                <img src="../../img/이/1/2.jpg" alt="" class="w-[61%] rounded-[13%] ml-[20%]">
-            </div>
-            
-        </div>
-        <div>
-            <button @click="search(13)" class="float-left w-[45%] mr-[10%] h-[118px] rounded-[27px]" style="border: solid darkgray;">네 가까운곳으로 갑니다.</button>
-        </div>
-        <div>
-            <button @click="search(13)" class="w-[45%]  h-[118px] rounded-[27px]" style="border: solid darkgray;">아니요 바다보러 멀리 갑니다.</button>
-        </div>
-	</div>
-
-    <div v-else-if="choice == 13">
-        <div class="pb-[22%]">
-            <div class="text-center pb-[8%] pt-[6%] text-[25px]" >1박2일로 갑니까?</div>
-            <div>
-                <img src="../../img/이/1/2.jpg" alt="" class="w-[61%] rounded-[13%] ml-[20%]">
-            </div>
-            
-        </div>
-        <div>
-            <button @click="search(14)" class="float-left w-[45%] mr-[10%] h-[118px] rounded-[27px]" style="border: solid darkgray;">네 1박2일로 갑니다.</button>
-        </div>
-        <div>
-            <button @click="search(15)" class="w-[45%]  h-[118px] rounded-[27px]" style="border: solid darkgray;">아니요 2박3일로 갑니다.</button>
-        </div>
-	</div>
-
-    <div v-else-if="choice == 14">
-        <div class="pb-[22%]">
-            <div class="text-center pb-[8%] pt-[6%] text-[25px]" >가격은 얼마정도 생각하고 계십니까?</div>
-            <div>
-                <img src="../../img/이/1/2.jpg" alt="" class="w-[61%] rounded-[13%] ml-[20%]">
-            </div>
-            
-        </div>
-        <div>
-            <button @click="search(17)" class="float-left w-[45%] mr-[10%] h-[118px] rounded-[27px]" style="border: solid darkgray;">10 ~ 20 만원대</button>
-        </div>
-        <div>
-            <button @click="search(18)" class="w-[45%]  h-[118px] rounded-[27px]" style="border: solid darkgray;">20 ~ 30 만원대</button>
-        </div>
-	</div>
-
-    <div v-else-if="choice == 15">
-        <div class="pb-[22%]">
-            <div class="text-center pb-[8%] pt-[6%] text-[25px]" >가격은 얼마정도 생각하고 계십니까?</div>
-            <div>
-                <img src="../../img/이/1/2.jpg" alt="" class="w-[61%] rounded-[13%] ml-[20%]">
-            </div>
-            
-        </div>
-        <div>
-            <button @click="search(18)" class="float-left w-[45%] mr-[10%] h-[118px] rounded-[27px]" style="border: solid darkgray;">20 ~ 30 만원대</button>
-        </div>
-        <div>
-            <button @click="search(19)" class="w-[45%]  h-[118px] rounded-[27px]" style="border: solid darkgray;">30 ~ 40 만원대</button>
-        </div>
-	</div>
-
-    <div v-else-if="choice == 16">
-        <div class="pb-[22%]">
-            <div class="text-center pb-[8%] pt-[6%] text-[25px]" >가격은 얼마정도 생각하고 계십니까?</div>
-            <div>
-                <img src="../../img/이/1/2.jpg" alt="" class="w-[61%] rounded-[13%] ml-[20%]">
-            </div>
-            
-        </div>
-        <div>
-            <button @click="search(17)" class="float-left w-[45%] mr-[10%] h-[118px] rounded-[27px]" style="border: solid darkgray;">20 ~ 30 만원대</button>
-        </div>
-        <div>
-            <button @click="search(18)" class="w-[45%]  h-[118px] rounded-[27px]" style="border: solid darkgray;">30 ~ 40 만원대</button>
-        </div>
-	</div>
-
-    <div v-else-if="choice == 17">
-        <div>
-            <section class="p-[14%] rounded-[37px] pt-[9%] pb-[5%]" style="border: solid 2px lightgray;">
-                <div class="text-[24px] pb-[38px] text-center">
-                    검색결과 입니다.
+            <a class="navbar-brand">
+                Winfor
+            </a>
+            <div method="Post">
+                <input type="text" style="border: solid 1px darkgray;" class="w-[90%] h-[4vh] rounded-[8px] p-[2%]" placeholder="어디로 떠날 생각이신가요?" v-model="searchcontents"  v-on:keyup.enter="submitSearch" >
+                <div class="float-right w-[3%]">
+                    <button @click="submitSearch">
+                        <img src="../../img/searchicon.png" alt="" style="border:solid 1px gray" class="m-[4px] p-[2px]">
+                    </button>
                 </div>
-                <div class="" style="margin-left: auto; margin-right: auto;">
-                    <div>
-                        <img :src=House.House[0].img1 alt="">
+            </div>
+        </div>
+        <section class="bg-white py-8 w-full">
+            <div>
+                자주 검색하는 키워드
+            </div>
+            <button class="float-left p-[2%]" @click="Searchbtn(1)" :class="{ fontweight: isBind1 }">All</button>
+            <button class="float-left p-[2%]" @click="Searchbtn(2)" :class="{ fontweight: isBind2 }">부산</button>
+            <button class="float-left p-[2%]" @click="Searchbtn(3)" :class="{ fontweight: isBind3 }">제주도</button>
+            <button class="float-left p-[2%]" @click="Searchbtn(4)" :class="{ fontweight: isBind4 }">강릉</button>
+            <button class="float-left p-[2%]" @click="Searchbtn(5)" :class="{ fontweight: isBind5 }">포항</button>
+			<div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+                <section class="bg-white py-8 w-full">
+                    <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+                        <nav id="store" class="w-full z-30 top-0 px-6 py-1">
+
+                        </nav>
+                        <div class="w-[100vh]" v-if="House == 0">
+                            <div>검색 결과</div>
+                            <div class="w-full pt-[15%] pb-[14%] text-center">
+                                최근 검색한 조건이 없습니다.
+                            </div>
+                           
+                        </div>
+                        <div class="w-[100vh]" v-else-if="House.House == 0">
+                            <div>검색 결과</div>
+                            <div class="w-full pt-[15%] pb-[14%] text-center">
+                                최근 검색한 조건이 없습니다.
+                            </div>
+                           
+                        </div>
+                        <div class="w-full" v-else>
+                            <div class=" md:w-1/3 xl:w-1/3 p-6 flex flex-col float-left media768padding2" v-for="(test, i) in House.House" :key="i">
+                                <a :href="'/home/house/'+ House.House[i].id">
+                                    <img class="hover:grow hover:shadow-lg h-[29vh] w-[32vh] rounded-[27px]" :src=House.House[i].img1>
+                                    <div class="pt-3 flex items-center justify-between">
+                                        <p class="">{{House.House[i].location}}</p>
+                                    </div>
+                                    
+                                    <p class="pt-1 text-gray-900">{{House.House[i].price}}</p>
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="pt-[3%]">
-                        <li>
-                            <strong class="text-[3vh]">{{House.House[0].location}}</strong>
-                            <div class="w-[3%] ml-auto float-right">
-                            </div>
-                            <div class="">
-                                <img src="../../img/location.png" alt="위치" class="w-[3%] float-left">
-
-                                <div @click="handlelocation_modal()" style="color: var(--bs-link-color); cursor:pointer;">123</div>
-                            </div>
-                        </li>
-                        <li> 
-                            <div>
-                                <div class="pt-[7px]">
-                                    <div class="w-[4%] float-left mr-[16px] mt-[7px] ml-[2px]">
-                                        <img src="../../img/go.png" alt="" >
-                                    </div>
-                                    <div class="text-[17px] decoration-black" style="">
-                                        <div>{{House.House[0].location}} 바로가기</div>
-                                    </div>
-                                </div>
-                                <div class="w-[4%] mt-[-13px] p-[5px] float-right">
-                                    <img src="../../img/next.svg" alt="" >
-                                </div>
-                                <div class="text-[12px] pl-[50px]" style="color: gray">
-                                    ※실제 사이트로 이동합니다.
-                                </div>
-                                
-                            </div>
-                        </li>
-                        <li> 
-                            <div>
-                                <div class="pt-[7px]">
-                                    <div class="w-[4%] float-left mr-[16px] mt-[7px] ml-[2px]">
-                                        <img src="../../img/reservation.png" alt="" >
-                                    </div>
-                                    <div class="text-[17px] decoration-black" style="">
-                                        <div>{{House.House[0].location}} 예약하기</div>
-                                    </div>
-                                </div>
-                                <div class="w-[4%] mt-[-13px] p-[5px] float-right">
-                                    <img src="../../img/next.svg" alt="" >
-                                </div>
-                                <div class="text-[12px] pl-[50px]" style="color: gray">
-                                    ※실제 사이트로 이동합니다.
-                                </div>
-                                
-                            </div>
-                        </li>
-                        <li>
-                            <div>최저가 가격 : {{House.House[0].price}}</div>
-                            <div>최고가 가격 : {{House.House[0].price2}}</div>
-                        </li>
-                        
-                        <a :href="'http://127.0.0.1:8000/home/house/'+ num"  class="ml-auto mr-auto block mt-[7%]" @click="pagelocation()">
-                            자세히 보러 가기
-                        </a>
-                    </div>
-                </div>
-
-            </section>
-
-
-
-	    </div>
-	</div>
-    <div v-else-if="choice == 18">
-        <div>
-            <section class="p-[14%] rounded-[37px] pt-[9%] pb-[5%]" style="border: solid 2px lightgray;">
-                <div class="text-[24px] pb-[38px] text-center">
-                    검색결과 입니다.
-                </div>
-                <div class="" style="margin-left: auto; margin-right: auto;">
-                    <div>
-                        <img :src=House.House[0].img1 alt="">
-                    </div>
-                    <div class="pt-[3%]">
-                        <li>
-                            <strong class="text-[3vh]">{{House.House[0].location}}</strong>
-                            <div class="w-[3%] ml-auto float-right">
-                            </div>
-                            <div class="">
-                                <img src="../../img/location.png" alt="위치" class="w-[3%] float-left">
-
-                                <div @click="handlelocation_modal()" style="color: var(--bs-link-color); cursor:pointer;">123</div>
-                            </div>
-                        </li>
-                        <li> 
-                            <div>
-                                <div class="pt-[7px]">
-                                    <div class="w-[4%] float-left mr-[16px] mt-[7px] ml-[2px]">
-                                        <img src="../../img/go.png" alt="" >
-                                    </div>
-                                    <div class="text-[17px] decoration-black" style="">
-                                        <div>{{House.House[0].location}} 바로가기</div>
-                                    </div>
-                                </div>
-                                <div class="w-[4%] mt-[-13px] p-[5px] float-right">
-                                    <img src="../../img/next.svg" alt="" >
-                                </div>
-                                <div class="text-[12px] pl-[50px]" style="color: gray">
-                                    ※실제 사이트로 이동합니다.
-                                </div>
-                                
-                            </div>
-                        </li>
-                        <li> 
-                            <div>
-                                <div class="pt-[7px]">
-                                    <div class="w-[4%] float-left mr-[16px] mt-[7px] ml-[2px]">
-                                        <img src="../../img/reservation.png" alt="" >
-                                    </div>
-                                    <div class="text-[17px] decoration-black" style="">
-                                        <div>{{House.House[0].location}} 예약하기</div>
-                                    </div>
-                                </div>
-                                <div class="w-[4%] mt-[-13px] p-[5px] float-right">
-                                    <img src="../../img/next.svg" alt="" >
-                                </div>
-                                <div class="text-[12px] pl-[50px]" style="color: gray">
-                                    ※실제 사이트로 이동합니다.
-                                </div>
-                                
-                            </div>
-                        </li>
-                        <li>
-                            <div>최저가 가격 : {{House.House[0].price}}</div>
-                            <div>최고가 가격 : {{House.House[0].price2}}</div>
-                        </li>
-                        
-                        <a :href="'http://127.0.0.1:8000/home/house/'+ num"  class="ml-auto mr-auto block mt-[7%]" @click="pagelocation()">
-                            자세히 보러 가기
-                        </a>
-                    </div>
-                </div>
-
-            </section>
-
-
-
-	    </div>
-	</div>
-    <div v-else-if="choice == 19">
-        <div>
-            <section class="p-[14%] rounded-[37px] pt-[9%] pb-[5%]" style="border: solid 2px lightgray;">
-                <div class="text-[24px] pb-[38px] text-center">
-                    검색결과 입니다.
-                </div>
-                <div class="" style="margin-left: auto; margin-right: auto;">
-                    <div>
-                        <img :src=House.House[0].img1 alt="">
-                    </div>
-                    <div class="pt-[3%]">
-                        <li>
-                            <strong class="text-[3vh]">{{House.House[0].location}}</strong>
-                            <div class="w-[3%] ml-auto float-right">
-                            </div>
-                            <div class="">
-                                <img src="../../img/location.png" alt="위치" class="w-[3%] float-left">
-
-                                <div @click="handlelocation_modal()" style="color: var(--bs-link-color); cursor:pointer;">123</div>
-                            </div>
-                        </li>
-                        <li> 
-                            <div>
-                                <div class="pt-[7px]">
-                                    <div class="w-[4%] float-left mr-[16px] mt-[7px] ml-[2px]">
-                                        <img src="../../img/go.png" alt="" >
-                                    </div>
-                                    <div class="text-[17px] decoration-black" style="">
-                                        <div>{{House.House[0].location}} 바로가기</div>
-                                    </div>
-                                </div>
-                                <div class="w-[4%] mt-[-13px] p-[5px] float-right">
-                                    <img src="../../img/next.svg" alt="" >
-                                </div>
-                                <div class="text-[12px] pl-[50px]" style="color: gray">
-                                    ※실제 사이트로 이동합니다.
-                                </div>
-                                
-                            </div>
-                        </li>
-                        <li> 
-                            <div>
-                                <div class="pt-[7px]">
-                                    <div class="w-[4%] float-left mr-[16px] mt-[7px] ml-[2px]">
-                                        <img src="../../img/reservation.png" alt="" >
-                                    </div>
-                                    <div class="text-[17px] decoration-black" style="">
-                                        <div>{{House.House[0].location}} 예약하기</div>
-                                    </div>
-                                </div>
-                                <div class="w-[4%] mt-[-13px] p-[5px] float-right">
-                                    <img src="../../img/next.svg" alt="" >
-                                </div>
-                                <div class="text-[12px] pl-[50px]" style="color: gray">
-                                    ※실제 사이트로 이동합니다.
-                                </div>
-                                
-                            </div>
-                        </li>
-                        <li>
-                            <div>최저가 가격 : {{House.House[0].price}}</div>
-                            <div>최고가 가격 : {{House.House[0].price2}}</div>
-                        </li>
-                        
-                        <a :href="'http://127.0.0.1:8000/home/house/'+ num"  class="ml-auto mr-auto block mt-[7%]" @click="pagelocation()">
-                            자세히 보러 가기
-                        </a>
-                    </div>
-                </div>
-
-            </section>
-
-
-
-	    </div>
-	</div>
-</div>
-	
-
+                </section>
+			</div>
+		</section>
+    </div>
 </template>
 
-<script>
+
+ <script>
 import Axios from 'axios';
-
-export default {
-		props : {
-
-		},
+    
+    export default {
 		data() {
 			return {
-                choice : 1,
+                promotions : [],
+                promotionnum : 1,
+				isBind1: false,
+				isBind2: false,
+				isBind3: false,
+                isBind4: false,
+                isBind5: false,
                 House : [],
-                num : 18,
+                searchcontents : [],
 			};
 		},
 		methods: {
-            search(i) {
-                this.choice = i
-                if (i == 17) {
-                    this.num = 13
+            Searchbtn(i){
+                if (i == 1) {
+                    this.isBind1 = true;
+					this.isBind2 = false;
+					this.isBind3 = false;
+                    this.isBind4 = false;
+                    this.isBind5 = false;
                     Axios
-				    .get(`http://127.0.0.1:8000/api/Houses/${this.num}`)
-				    .then(res => {this.House = res.data})
-                }
-                else if ( i == 18) {
-                    this.num = 15
+                        .get(`/api/House`)
+                        .then(res => {
+                                this.House = res.data
+                            })
+                }else if (i == 2){
+                    this.isBind1 = false;
+					this.isBind2 = true;
+					this.isBind3 = false;
+                    this.isBind4 = false;
+                    this.isBind5 = false;
                     Axios
-				    .get(`http://127.0.0.1:8000/api/Houses/${this.num}`)
-				    .then(res => {this.House = res.data})
+                        .get(`/api/House/0`)
+                        .then(res => {
+                                this.House = res.data
+                            })
                 }
-                else if ( i == 19) {
-                    this.num = 16
+                else if (i == 3){
+                    this.isBind1 = false;
+					this.isBind2 = false;
+					this.isBind3 = true;
+                    this.isBind4 = false;
+                    this.isBind5 = false;
                     Axios
-				    .get(`http://127.0.0.1:8000/api/Houses/${this.num}`)
-				    .then(res => {this.House = res.data})
+                        .get(`/api/House/1`)
+                        .then(res => {
+                                this.House = res.data
+                            })
                 }
+                else if (i == 4){
+                    this.isBind1 = false;
+					this.isBind2 = false;
+					this.isBind3 = false;
+                    this.isBind4 = true;
+                    this.isBind5 = false;
+                    Axios
+                        .get(`/api/House/2`)
+                        .then(res => {
+                                this.House = res.data
+                            })
+                }
+                else if (i == 5){
+                    this.isBind1 = false;
+					this.isBind2 = false;
+					this.isBind3 = false;
+                    this.isBind4 = false;
+                    this.isBind5 = true;
+                    Axios
+                        .get(`/api/House/3`)
+                        .then(res => {
+                                this.House = res.data
+                            })
+                }
+            },
+            submitSearch() {
+                Axios
+					.post(`/api/search/${this.searchcontents}`)
+                    .then(res => {
+                                this.House = res.data
+                                if(this.House.House == 0){
+                                    alert('데이터가 없습니다.');
+                                }
+                            })
+					
+                    this.isBind1 = false;
+					this.isBind2 = false;
+					this.isBind3 = false;
+                    this.isBind4 = false;
+                    this.isBind5 = false;
             }
-	    },
-        created() {
+           
+
+		},
+        created() {			
 
 		}
-}
 
-</script>
-  <style>
-
-    @media screen and (max-width: 768px) {
-		.media768width {
-			width: 63%;
-		}
 	}
-  </style>
+
+ </script>
+
+<style>
+	.fontweight {
+		font-weight: bolder;
+	}
+	</style>

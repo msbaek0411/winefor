@@ -21,13 +21,18 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('House2', require('./components/House.vue').default);
+
+Vue.component('House1', require('./components/House1.vue').default);
+
+Vue.component('House2', require('./components/House2.vue').default);
 
 Vue.component('Myhome', require('./components/Myhome.vue').default);
 
-Vue.component('Search', require('./components/Search.vue').default);
+Vue.component('where', require('./components/where.vue').default);
 
 Vue.component('Promotions', require('./components/Promotions.vue').default);
+
+Vue.component('search', require('./components/search.vue').default);
 
 Vue.component('Test123', require('./components/Test123.vue').default);
 /**

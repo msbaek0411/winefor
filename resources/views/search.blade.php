@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.app3')
 
 @section('content')
     <div>
-        <Search/>
+        <search/>
     </div>
 @endsection

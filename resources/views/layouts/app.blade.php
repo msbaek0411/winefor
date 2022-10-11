@@ -1,13 +1,15 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+
+<link rel="shortcut icon" type="image/x-icon" href="/images/plane.png?a8452f82a20a24134642fd6d0136d36f">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Winfor</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -31,8 +33,10 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
-                    <input type="text" style="border: solid 1px darkgray;" class="w-[57vh] h-[4vh] rounded-[8px] p-[2%]" placeholder="어디로 떠날 생각이신가요?" >
+                    <a href="/search">
+                        <input type="text" style="border: solid 1px darkgray;" class="w-[57vh] h-[4vh] rounded-[8px] p-[2%]" placeholder="어디로 떠날 생각이신가요?" >
+                    </a>
+                    
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -74,9 +78,9 @@
                 </div>
             </div>
         </nav>
-        <div class="text-center pt-[10px]">
+        <div class="text-center pt-[10px] pb-[-1%]">
             <a href="/" class="pr-[5vh]">myhome</a>
-            <a href="/search" class="pr-[5vh]">search</a>
+            <a href="/where" class="pr-[5vh]">where</a>
             <a href="/promotion" class="pr-[5vh]">promotion</a>
         </div>
         
